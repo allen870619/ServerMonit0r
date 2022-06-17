@@ -11,7 +11,10 @@ import SwiftyJSON
 
 @main
 struct ServerMonit0rApp: App {
+    @StateObject var serverData = ConnectionData()
+    
     init(){
+        // set auto connect
         if SavedUserDefaults.autoConn{
             SavedUserDefaults.manualConn = true
         }
@@ -21,26 +24,40 @@ struct ServerMonit0rApp: App {
     var body: some Scene {
         WindowGroup {
             MenuView()
+                .environmentObject(serverData)
         }
     }
 }
 
-class ServerData: ObservableObject{
+/**
+ connection
+ */
+class ConnectionData: ObservableObject{
+    // ui data
     @Published var cpuUsage: Double = 0
     @Published var cpuTemp: Double = 0
     @Published var cpuFreq: Double = 0
     @Published var memUsage: Double = 0
-    @Published var upTime: String = "N/A"
-    @Published var btnText: String = "Connect"
-    var isConnect = false
-    var task: Task<(), Error>? = nil
+    @Published var uptime: String = "N/A"
+    @Published var dlSpeed: String = "N/A"
+    @Published var ulSpeed: String = "N/A"
+    @Published var btnText: String = "connect".toNSL()
+    
+    // connection
+    var isConnected = false
     var conn: NWConnection? = nil
     var ip = "127.0.0.1"
     var port: UInt16 = 9943
+    var spdUnit = 0
+    let timeout = 3
+    
+    // view
+    @Published var alertTitle: String = ""
+    @Published var alertMsg: String?
+    @Published var alertIsPresented = false
     
     init(){
-        ip = SavedUserDefaults.ipAddr == "" ? ip : SavedUserDefaults.ipAddr
-        port = SavedUserDefaults.port == "" ? port : UInt16(SavedUserDefaults.port) ?? port
+        // set auto connect
         if SavedUserDefaults.manualConn{
             setConnect()
         }
@@ -51,42 +68,49 @@ class ServerData: ObservableObject{
     }
     
     private func createConnection(){
+        ip = SavedUserDefaults.ipAddr == "" ? ip : SavedUserDefaults.ipAddr
+        port = SavedUserDefaults.port == "" ? port : UInt16(SavedUserDefaults.port) ?? port
         conn = NWConnection(host: NWEndpoint.Host(ip),
                             port: NWEndpoint.Port(integerLiteral: port),
                             using: .tcp)
-        
+        let timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timeout), repeats: false){[self] _ in
+            alertTitle = "connectFailed".toNSL()
+            alertMsg = "connectFailedHint".toNSL()
+            alertIsPresented = true
+            self.setDisconnect()
+        }
         conn?.stateUpdateHandler = { newState in
             switch newState{
-            case .setup:
-                print("state setup")
-            case .waiting(let error):
-                print("state waiting \(error)")
             case .preparing:
-                print("state preparing")
                 DispatchQueue.main.async {
-                    self.btnText = "Connecting..."
+                    self.btnText = "connecting".toNSL()
                 }
             case .ready:
-                print("state ready")
+                timer.invalidate()
                 DispatchQueue.main.async {
-                    self.btnText = "Disconnect"
+                    self.btnText = "disconnect".toNSL()
                 }
                 self.receiveData()
             case .failed(let error):
                 print("state failed \(error)")
             case .cancelled:
-                print("state cancel")
-            @unknown default:
-                print(newState)
+                DispatchQueue.main.async {
+                    self.btnText = "connect".toNSL()
+                }
+            default:
+                print("state: \(newState)")
             }
         }
         conn?.start(queue: .global())
     }
     
+    /// receive data
+    ///
+    /// This will recursive until disconnect (Any concurrecy func?)
     private func receiveData(){
-        conn?.receive(minimumIncompleteLength: 0, maximumLength: 1024){[self] content, context, isComplete, receError in
+        conn?.receive(minimumIncompleteLength: 0, maximumLength: 1024){[self] content, _, isComplete, receError in
             if let _ = receError {
-                conn?.cancel()
+                setDisconnect()
             } else {
                 if let content = content {
                     let json = JSON(content)
@@ -96,16 +120,22 @@ class ServerData: ObservableObject{
                         cpuTemp = temp == -1000 ? 0 : temp
                         cpuFreq = json["cpu"]["cpuFreq"].doubleValue / 5000
                         memUsage = json["mem"]["memUsage"].doubleValue / 100
-                        upTime = json["other"]["upTime"].stringValue
+                        uptime = json["other"]["upTime"].stringValue
+                        let rawDlSpd = json["net"]["netDownload"].doubleValue.roundTo(2)
+                        let rawUlSpd = json["net"]["netUpload"].doubleValue.roundTo(2)
+                        dlSpeed = "\(rawDlSpd) Mbps"
+                        ulSpeed = "\(rawUlSpd) Mbps"
                     }
-                    if self.isConnect{
-                        receiveData()
-                    }
+                }
+                
+                // redo rcv
+                if self.isConnected{
+                    receiveData()
                 }
             }
             
             if isComplete {
-                conn?.cancel()
+                setDisconnect()
             }
         }
     }
@@ -114,8 +144,8 @@ class ServerData: ObservableObject{
      btnConnect trigger
      */
     func onConnectClick(){
-        isConnect = !isConnect
-        if isConnect{
+        isConnected = !isConnected
+        if isConnected{
             setConnect()
         }else{
             setDisconnect()
@@ -123,54 +153,43 @@ class ServerData: ObservableObject{
     }
     
     /**
-      Connect
+     Connect
      */
     private func setConnect(){
-        isConnect = true
+        isConnected = true
         SavedUserDefaults.manualConn = true
         createConnection()
-        btnText = "Disconnect"
+        btnText = "disconnect".toNSL()
     }
     
     /**
-      Disconnect
+     Disconnect
      */
     private func setDisconnect(){
-        isConnect = false
+        isConnected = false
         SavedUserDefaults.manualConn = false
-        conn?.forceCancel()
-        btnText = "Connect"
+        if conn?.state == .ready || conn?.state == .preparing{
+            conn?.forceCancel()
+        }
+        DispatchQueue.main.async {
+            self.btnText = "connect".toNSL()
+        }
         clearUi()
     }
     
-    private func clearUi(){
-        cpuUsage = 0
-        cpuTemp = 0
-        cpuFreq = 0
-        memUsage = 0
-        upTime = "N/A"
+    func resetConnect(autoConnect: Bool = false){
+        setDisconnect()
     }
     
-    // mock
-    private func updateUsage(){
-        task = Task(){
-            while true{
-                if task?.isCancelled == true{
-                    break
-                }
-                do{
-                    DispatchQueue.main.async {
-                        self.cpuUsage = Double.random(in: 0...1)
-                        self.cpuTemp = Double.random(in: 0...1)
-                        self.cpuFreq = Double.random(in: 0...1)
-                        self.memUsage = Double.random(in: 0...1)
-                    }
-                    try await Task.sleep(nanoseconds: UInt64(1 * Double(NSEC_PER_SEC)))
-                }
-            }
+    private func clearUi(){
+        DispatchQueue.main.async {[self] in
+            cpuUsage = 0
+            cpuTemp = 0
+            cpuFreq = 0
+            memUsage = 0
+            uptime = "N/A"
+            dlSpeed = "N/A"
+            ulSpeed = "N/A"
         }
     }
 }
-
-
-

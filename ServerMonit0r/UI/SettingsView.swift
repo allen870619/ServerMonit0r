@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var data = SettingsData()
+    @StateObject var settingsData = SettingsData()
+    @ObservedObject var serverData: ConnectionData
     
     @FocusState var ipFocus: Bool
     @FocusState var portFocus: Bool
@@ -16,16 +17,16 @@ struct SettingsView: View {
     var body: some View {
         Form{
             Section("connSetting".toNSL()){
-                IpPack(ipValue: $data.ipValue, ipFocus: $ipFocus)
-                PortPack(portValue: $data
+                IpPack(ipValue: $settingsData.ipValue, ipFocus: $ipFocus)
+                PortPack(portValue: $settingsData
                     .portValue, portFocus: $portFocus)
             }
             
             Section("prefSetting".toNSL()){
-                Toggle("srcAlwaysOn".toNSL(), isOn: $data.scrAlwaysOn)
-                Toggle("autoConnect".toNSL(), isOn: $data.autoConnect)
-                Picker("unit", selection: $data.selUnit){
-                    ForEach(data.unit, id: \.self){ i in
+                Toggle("srcAlwaysOn".toNSL(), isOn: $settingsData.scrAlwaysOn)
+                Toggle("autoConnect".toNSL(), isOn: $settingsData.autoConnect)
+                Picker("unit", selection: $settingsData.selUnit){
+                    ForEach(settingsData.unit, id: \.self){ i in
                         Text("\(i)")
                     }
                 }.pickerStyle(.segmented)
@@ -36,11 +37,14 @@ struct SettingsView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing){
                 Spacer()
                 Button("save".toNSL()){
-                    data.onSave()
-                }.alert(data.alertTitle, isPresented: $data.showAlert, actions: {
+                    settingsData.onSave()
+                    if settingsData.checkInput() == .noError{
+                        serverData.resetConnect()
+                    }
+                }.alert(settingsData.alertTitle, isPresented: $settingsData.showAlert, actions: {
                     Button("ok".toNSL()) { }
                 }, message: {
-                    if let msg = data.errMessage{
+                    if let msg = settingsData.errMessage{
                         Text(msg)
                     }
                 })
@@ -113,6 +117,6 @@ struct PortPack: View{
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(serverData: ConnectionData())
     }
 }
