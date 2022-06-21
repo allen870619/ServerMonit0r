@@ -17,8 +17,8 @@ struct SettingsView: View {
     var body: some View {
         Form{
             Section("connSetting".toNSL()){
-                ConnField(title: "ip".toNSL(), value: $settingsData.ipValue, focus: $ipFocus, defValue: "127.0.0.1")
-                ConnField(title: "port".toNSL(), value: $settingsData.portValue, focus: $portFocus, defValue: "9943")
+                ConnField(title: "ip".toNSL(), value: $settingsData.ipValue, focus: $ipFocus, defValue: "127.0.0.1", kbType: .decimalPad)
+                ConnField(title: "port".toNSL(), value: $settingsData.portValue, focus: $portFocus, defValue: "9943", kbType: .numberPad)
             }
             
             Section("prefSetting".toNSL()){
@@ -82,6 +82,7 @@ struct ConnField: View{
     var value: Binding<String>
     var focus: FocusState<Bool>.Binding
     let defValue: String
+    let kbType: UIKeyboardType
     
     var body: some View {
         VStack{
@@ -91,7 +92,7 @@ struct ConnField: View{
             }
             TextField(String(defValue), text: value)
                 .font(.system(size: 18))
-                .keyboardType(.numberPad)
+                .keyboardType(kbType)
                 .foregroundColor(.textColor)
                 .focused(focus)
         }
