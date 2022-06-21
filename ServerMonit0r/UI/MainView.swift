@@ -14,13 +14,13 @@ struct MainView: View {
         VStack{
             ScrollView{
                 VStack{
-                    CustomProgressView(title: "cpuUsage".toNSL(), percent: connectionData.cpuUsage)
+                    CustomProgressView(title: "cpuUsage".toNSL(), titleValue: connectionData.cpuUsageHint, percent: connectionData.cpuUsage)
                         .padding(.vertical, 16)
-                    CustomProgressView(title: "cpuTemp".toNSL(), percent: connectionData.cpuTemp)
+                    CustomProgressView(title: "cpuTemp".toNSL(), titleValue: connectionData.cpuTempHint, percent: connectionData.cpuTemp)
                         .padding(.vertical, 16)
-                    CustomProgressView(title: "cpuFreq".toNSL(), percent: connectionData.cpuFreq)
+                    CustomProgressView(title: "cpuFreq".toNSL(), titleValue: connectionData.cpuFreqHint, percent: connectionData.cpuFreq)
                         .padding(.vertical, 16)
-                    CustomProgressView(title: "memUsage".toNSL(), percent: connectionData.memUsage)
+                    CustomProgressView(title: "memUsage".toNSL(), titleValue: connectionData.memUsageHint, percent: connectionData.memUsage)
                         .padding(.vertical, 16)
                     CustomTextView(title: "uptime".toNSL(), value: connectionData.uptime)
                         .padding(.vertical, 16)
@@ -40,21 +40,23 @@ struct MainView: View {
                     Text(connectionData.btnText)
                         .padding(8)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .background(Color.green)
+                        .foregroundColor(.backgroundColor)
+                        .background(Color.accentVariantColor)
                         .cornerRadius(8)
                 })
                 .padding(.horizontal, 16)
             }
             .padding(.vertical, 16)
-            .background(.blue)
-        }.alert(connectionData.alertTitle, isPresented: $connectionData.alertIsPresented, actions: {
+            .background(Color.accentColor)
+        }
+        .alert(connectionData.alertTitle, isPresented: $connectionData.alertIsPresented, actions: {
             Button("ok".toNSL()) { }
         }, message: {
             if let msg = connectionData.alertMsg{
                 Text(msg)
             }
         })
+        .background(Color.backgroundColor)
     }
 }
 
@@ -62,15 +64,28 @@ struct MainView: View {
  progress view
  */
 struct CustomProgressView: View{
-    var title: String = ""
-    var percent: Double = 1.0
+    var title: String
+    var titleValue: String?
+    var percent: Double
     
     var body: some View{
         VStack{
-            Text(title)
-                .font(.system(size: 18))
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth:.infinity, alignment: .leading)
+            HStack{
+                Text(title)
+                    .font(.system(size: 18))
+                    .foregroundColor(.textColor)
+                    .multilineTextAlignment(.leading)
+                    .frame(alignment: .leading)
+                if let hintValue = titleValue{
+                    Text(hintValue)
+                        .font(.system(size: 18))
+                        .foregroundColor(.textColor)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth:.infinity, alignment: .leading)
+                }else{
+                    Spacer()
+                }
+            }
             GeometryReader(){geometer in // 用來測量框架大小的
                 Rectangle()
                     .frame(height: 16)
@@ -93,10 +108,12 @@ struct CustomTextView: View{
         VStack{
             Text(title)
                 .font(.system(size: 18))
+                .foregroundColor(.textColor)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth:.infinity, alignment: .leading)
             Text(value)
                 .font(.system(size: 18))
+                .foregroundColor(.textColor)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth:.infinity, alignment: .center)
         }

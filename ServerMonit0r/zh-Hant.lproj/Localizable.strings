@@ -1,0 +1,50 @@
+/* 
+  Localizable.strings
+  ServerMonit0r
+
+  Created by Lee Yen Lin on 2022/6/15.
+  
+*/
+// menu
+"menu" = "選單";
+"dashboard" = "儀表板";
+"settings" = "設定";
+
+// settings
+"save" = "儲存";
+"saved" = "已儲存";
+"connSetting" = "連線設定";
+"ip" = "IP";
+"port" = "連接埠";
+
+"ipWrongFormat" = "IP格式不正確";
+
+"prefSetting" = "偏好設定";
+"srcAlwaysOn" = "螢幕恆亮";
+"autoConnect" = "自動連線";
+"spdUnitMBs" = "MB/s";
+"spdUnitMbps" = "Mbps";
+
+// connection
+"connect" = "連線";
+"connecting" = "連線中";
+"disconnect" = "中斷連線";
+"connectFailed" = "連線失敗";
+"connectFailedHint" = "請檢查主機端或是連線設定";
+"connectServerDown" = "連線中斷";
+"connectServerDownHint" = "伺服器已關閉連線";
+
+// main
+"cpuUsage" = "CPU 使用率";
+"cpuTemp" = "CPU 溫度";
+"cpuFreq" = "CPU 頻率";
+"memUsage" = "記憶體使用量";
+"uptime" = "運作時長";
+"downloadSpd" = "下載速度";
+"uploadSpd" = "上傳速度";
+
+// utils
+"ok" = "好";
+"done" = "完成";
+"failed" = "失敗";
+"n/a" = "暫無資料";

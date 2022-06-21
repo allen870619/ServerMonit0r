@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var settingsData = SettingsData()
-    @ObservedObject var serverData: ConnectionData
+    @EnvironmentObject var serverData: ConnectionData
     
     @FocusState var ipFocus: Bool
     @FocusState var portFocus: Bool
@@ -17,9 +17,8 @@ struct SettingsView: View {
     var body: some View {
         Form{
             Section("connSetting".toNSL()){
-                IpPack(ipValue: $settingsData.ipValue, ipFocus: $ipFocus)
-                PortPack(portValue: $settingsData
-                    .portValue, portFocus: $portFocus)
+                ConnField(title: "ip".toNSL(), value: $settingsData.ipValue, focus: $ipFocus, defValue: "127.0.0.1")
+                ConnField(title: "port".toNSL(), value: $settingsData.portValue, focus: $portFocus, defValue: "9943")
             }
             
             Section("prefSetting".toNSL()){
@@ -29,7 +28,8 @@ struct SettingsView: View {
                     ForEach(settingsData.unit, id: \.self){ i in
                         Text("\(i)")
                     }
-                }.pickerStyle(.segmented)
+                }
+                .pickerStyle(.segmented)
             }
         }
         .navigationTitle("settings".toNSL())
@@ -39,9 +39,10 @@ struct SettingsView: View {
                 Button("save".toNSL()){
                     settingsData.onSave()
                     if settingsData.checkInput() == .noError{
-                        serverData.resetConnect()
+                        serverData.disconnect()
                     }
-                }.alert(settingsData.alertTitle, isPresented: $settingsData.showAlert, actions: {
+                }
+                .alert(settingsData.alertTitle, isPresented: $settingsData.showAlert, actions: {
                     Button("ok".toNSL()) { }
                 }, message: {
                     if let msg = settingsData.errMessage{
@@ -72,44 +73,27 @@ struct SettingsView: View {
                 }
             }
         }
+        .foregroundColor(.textColor)
     }
 }
 
-struct IpPack: View{
-    var ipValue: Binding<String>
-    var ipFocus: FocusState<Bool>.Binding
-    let ipDefault = "127.0.0.1"
+struct ConnField: View{
+    var title: String
+    var value: Binding<String>
+    var focus: FocusState<Bool>.Binding
+    let defValue: String
     
     var body: some View {
         VStack{
             HStack{
-                Text("ip".toNSL())
+                Text(title)
                 Spacer()
             }
-            TextField(ipDefault, text: ipValue)
-                .font(.system(size: 18))
-                .keyboardType(.decimalPad)
-                .focused(ipFocus)
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-struct PortPack: View{
-    var portValue: Binding<String>
-    var portFocus: FocusState<Bool>.Binding
-    let portDefault = 9943
-    
-    var body: some View {
-        VStack{
-            HStack{
-                Text("port".toNSL())
-                Spacer()
-            }
-            TextField(String(portDefault), text: portValue)
+            TextField(String(defValue), text: value)
                 .font(.system(size: 18))
                 .keyboardType(.numberPad)
-                .focused(portFocus)
+                .foregroundColor(.textColor)
+                .focused(focus)
         }
         .padding(.vertical, 4)
     }
@@ -117,6 +101,6 @@ struct PortPack: View{
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(serverData: ConnectionData())
+        SettingsView()
     }
 }

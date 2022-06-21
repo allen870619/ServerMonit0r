@@ -30,14 +30,18 @@ struct ServerMonit0rApp: App {
 }
 
 /**
- connection
+ Socket connector
  */
 class ConnectionData: ObservableObject{
     // ui data
     @Published var cpuUsage: Double = 0
+    @Published var cpuUsageHint: String?
     @Published var cpuTemp: Double = 0
+    @Published var cpuTempHint: String?
     @Published var cpuFreq: Double = 0
+    @Published var cpuFreqHint: String?
     @Published var memUsage: Double = 0
+    @Published var memUsageHint: String?
     @Published var uptime: String = "N/A"
     @Published var dlSpeed: String = "N/A"
     @Published var ulSpeed: String = "N/A"
@@ -48,8 +52,9 @@ class ConnectionData: ObservableObject{
     var conn: NWConnection? = nil
     var ip = "127.0.0.1"
     var port: UInt16 = 9943
-    var spdUnit = 0
-    let timeout = 3
+    var spdUnit: SpdUnit = .mbps
+    var timer: Timer?
+    let timeout = 15
     
     // view
     @Published var alertTitle: String = ""
@@ -59,26 +64,38 @@ class ConnectionData: ObservableObject{
     init(){
         // set auto connect
         if SavedUserDefaults.manualConn{
-            setConnect()
+            connect()
         }
     }
     
     deinit{
-        setDisconnect()
+        disconnect()
     }
     
+    /**
+     Socket Setup
+     */
+    
+    /// Create connection with server
+    ///
+    /// Ip and Port will refresh if call this again.
     private func createConnection(){
         ip = SavedUserDefaults.ipAddr == "" ? ip : SavedUserDefaults.ipAddr
         port = SavedUserDefaults.port == "" ? port : UInt16(SavedUserDefaults.port) ?? port
         conn = NWConnection(host: NWEndpoint.Host(ip),
                             port: NWEndpoint.Port(integerLiteral: port),
                             using: .tcp)
-        let timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timeout), repeats: false){[self] _ in
+        spdUnit = SpdUnit(rawValue: SavedUserDefaults.spdUnit) ?? .mbps
+        
+        // timeout timer
+        timer = Timer.scheduledTimer(withTimeInterval: TimeInterval(timeout), repeats: false){[self] _ in
             alertTitle = "connectFailed".toNSL()
             alertMsg = "connectFailedHint".toNSL()
             alertIsPresented = true
-            self.setDisconnect()
+            self.disconnect()
         }
+        
+        // connect state
         conn?.stateUpdateHandler = { newState in
             switch newState{
             case .preparing:
@@ -86,7 +103,7 @@ class ConnectionData: ObservableObject{
                     self.btnText = "connecting".toNSL()
                 }
             case .ready:
-                timer.invalidate()
+                self.timer?.invalidate()
                 DispatchQueue.main.async {
                     self.btnText = "disconnect".toNSL()
                 }
@@ -94,6 +111,7 @@ class ConnectionData: ObservableObject{
             case .failed(let error):
                 print("state failed \(error)")
             case .cancelled:
+                self.timer?.invalidate()
                 DispatchQueue.main.async {
                     self.btnText = "connect".toNSL()
                 }
@@ -101,30 +119,64 @@ class ConnectionData: ObservableObject{
                 print("state: \(newState)")
             }
         }
+        
         conn?.start(queue: .global())
     }
     
     /// receive data
     ///
-    /// This will recursive until disconnect (Any concurrecy func?)
+    /// This will recursive until disconnect or error
     private func receiveData(){
-        conn?.receive(minimumIncompleteLength: 0, maximumLength: 1024){[self] content, _, isComplete, receError in
-            if let _ = receError {
-                setDisconnect()
+        conn?.receive(minimumIncompleteLength: 0, maximumLength: 1024){[self] content, _, isComplete, recvError in
+            if let err = recvError{
+                if err == .posix(.ENODATA){
+                    DispatchQueue.main.async {[weak self] in
+                        self?.alertTitle = "connectServerDown".toNSL()
+                        self?.alertMsg = "connectServerDownHint".toNSL()
+                        self?.alertIsPresented = true
+                    }
+                }
+                
+                DispatchQueue.main.async {[weak self] in
+                    self?.disconnect()
+                }
             } else {
                 if let content = content {
                     let json = JSON(content)
-                    DispatchQueue.main.async {[self] in
-                        cpuUsage = json["cpu"]["cpuUsage"].doubleValue / 100
-                        let temp = json["cpu"]["cpuTemp"].doubleValue / 100
-                        cpuTemp = temp == -1000 ? 0 : temp
-                        cpuFreq = json["cpu"]["cpuFreq"].doubleValue / 5000
-                        memUsage = json["mem"]["memUsage"].doubleValue / 100
-                        uptime = json["other"]["upTime"].stringValue
+                    DispatchQueue.main.async {[weak self] in
+                        // usage
+                        let usage = json["cpu"]["cpuUsage"].doubleValue
+                        self?.cpuUsage = usage / 100
+                        self?.cpuUsageHint = "\(usage) %"
+                        
+                        // temperature
+                        let temp = json["cpu"]["cpuTemp"].doubleValue.roundTo(1)
+                        self?.cpuTemp = temp == -1000 ? 0 : temp / 100
+                        self?.cpuTempHint = temp == -1000 ? "n/a".toNSL() : "\(temp) ºC"
+                        
+                        // freq
+                        let freq = json["cpu"]["cpuFreq"].doubleValue.roundTo(2)
+                        self?.cpuFreq = json["cpu"]["cpuFreq"].doubleValue / 5000
+                        self?.cpuFreqHint = "\(freq) Mhz"
+                        
+                        // memory
+                        let mem = json["mem"]["memUsage"].doubleValue.roundTo(1)
+                        self?.memUsage = mem / 100
+                        self?.memUsageHint = "\(mem) %"
+                        
+                        // other
+                        self?.uptime = json["other"]["upTime"].stringValue
+                        
+                        // network
                         let rawDlSpd = json["net"]["netDownload"].doubleValue.roundTo(2)
                         let rawUlSpd = json["net"]["netUpload"].doubleValue.roundTo(2)
-                        dlSpeed = "\(rawDlSpd) Mbps"
-                        ulSpeed = "\(rawUlSpd) Mbps"
+                        if self?.spdUnit == .mbps{
+                            self?.dlSpeed = "\(rawDlSpd) Mbps"
+                            self?.ulSpeed = "\(rawUlSpd) Mbps"
+                        }else{
+                            self?.dlSpeed = "\((rawDlSpd/8).roundTo(2)) MB/s"
+                            self?.ulSpeed = "\((rawDlSpd/8).roundTo(2)) MB/s"
+                        }
                     }
                 }
                 
@@ -133,63 +185,55 @@ class ConnectionData: ObservableObject{
                     receiveData()
                 }
             }
-            
-            if isComplete {
-                setDisconnect()
-            }
         }
     }
     
-    /**
-     btnConnect trigger
-     */
+    /// btnConnect trigger
     func onConnectClick(){
         isConnected = !isConnected
         if isConnected{
-            setConnect()
+            connect()
         }else{
-            setDisconnect()
+            disconnect()
         }
     }
     
     /**
-     Connect
+     Connection
      */
-    private func setConnect(){
+    
+    /// Connect
+    private func connect(){
         isConnected = true
         SavedUserDefaults.manualConn = true
         createConnection()
         btnText = "disconnect".toNSL()
     }
     
-    /**
-     Disconnect
-     */
-    private func setDisconnect(){
+    /// Disconnect
+    func disconnect(){
+        self.timer?.invalidate()
         isConnected = false
         SavedUserDefaults.manualConn = false
         if conn?.state == .ready || conn?.state == .preparing{
             conn?.forceCancel()
         }
-        DispatchQueue.main.async {
-            self.btnText = "connect".toNSL()
-        }
+        self.btnText = "connect".toNSL()
         clearUi()
     }
     
-    func resetConnect(autoConnect: Bool = false){
-        setDisconnect()
-    }
-    
+    /// clear ui data
     private func clearUi(){
-        DispatchQueue.main.async {[self] in
-            cpuUsage = 0
-            cpuTemp = 0
-            cpuFreq = 0
-            memUsage = 0
-            uptime = "N/A"
-            dlSpeed = "N/A"
-            ulSpeed = "N/A"
-        }
+        cpuUsage = 0
+        cpuUsageHint = nil
+        cpuTemp = 0
+        cpuTempHint = nil
+        cpuFreq = 0
+        cpuFreqHint = nil
+        memUsage = 0
+        memUsageHint = nil
+        uptime = "N/A"
+        dlSpeed = "N/A"
+        ulSpeed = "N/A"
     }
 }

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MenuView: View {
-    @EnvironmentObject private var serverData: ConnectionData
     @State private var selection : String? = "dashboard".toNSL()
     let menuList = ["dashboard".toNSL(), "settings".toNSL()]
     
@@ -19,13 +18,14 @@ struct MenuView: View {
                     if selection == "dashboard".toNSL(){
                         MainView()
                     }else{
-                        SettingsView(serverData: serverData)
+                        SettingsView()
                     }
                 } label: {
                     Text(element)
                 }
                 .navigationTitle("menu".toNSL())
             }
+            .foregroundColor(.textColor)
         }
     }
 }
@@ -49,6 +49,5 @@ struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
             .environmentObject(ConnectionData())
-            .previewInterfaceOrientation(.landscapeRight)
     }
 }
