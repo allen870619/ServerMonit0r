@@ -1,0 +1,50 @@
+/* 
+  Localizable.strings
+  ServerMonit0r
+
+  Created by Lee Yen Lin on 2022/6/15.
+  
+*/
+// menu
+"menu" = "Menu";
+"dashboard" = "Dashboard";
+"settings" = "Settings";
+
+// settings
+"save" = "Save";
+"saved" = "Saved";
+"connSetting" = "Connection";
+"ip" = "IP";
+"port" = "Port";
+
+"ipWrongFormat" = "IP format is not correct.";
+
+"prefSetting" = "Preferences";
+"srcAlwaysOn" = "Screen Always On";
+"autoConnect" = "Auto Connect";
+"spdUnitMBs" = "MB/s";
+"spdUnitMbps" = "Mbps";
+
+// connection
+"connect" = "Connect";
+"connecting" = "Connecting";
+"disconnect" = "Disconnect";
+"connectFailed" = "Connect failed";
+"connectFailedHint" = "Please check your server or network setting.";
+"connectServerDown" = "Connection Interrupted";
+"connectServerDownHint" = "Server has closed the connection.";
+
+// main
+"cpuUsage" = "CPU Usage";
+"cpuTemp" = "CPU temp.";
+"cpuFreq" = "CPU Freq.";
+"memUsage" = "Memory Usage";
+"uptime" = "Uptime";
+"downloadSpd" = "Download Speed";
+"uploadSpd" = "Upload Speed";
+
+// utils
+"ok" = "OK";
+"done" = "Done";
+"failed" = "Failed";
+"n/a" = "N/A";

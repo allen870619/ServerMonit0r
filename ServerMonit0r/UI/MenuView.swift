@@ -8,23 +8,39 @@
 import SwiftUI
 
 struct MenuView: View {
-    @State private var selection: String? = "dashboard".toNSL()
-    let list: [String] = ["dashboard".toNSL(), "settings".toNSL()]
+    @State private var selection : String? = "dashboard".toNSL()
+    let menuList = ["dashboard".toNSL(), "settings".toNSL()]
     
     var body: some View {
-        NavigationView {
-            List(list, id: \.self){ element in
-                NavigationLink(tag: element, selection: $selection, destination: {
+        NavigationView{
+            List(menuList, id: \.self){ element  in
+                NavigationLink(tag: element, selection: $selection){
                     if selection == "dashboard".toNSL(){
                         MainView()
                     }else{
                         SettingsView()
                     }
-                }, label: {
+                } label: {
                     Text(element)
-                })
+                }
+                .navigationTitle("menu".toNSL())
             }
-            .navigationTitle("menu".toNSL())
+            .foregroundColor(.textColor)
+        }
+    }
+}
+
+extension View {
+    func customNavStyle() -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return AnyView(self.navigationViewStyle(.columns))
+        } else {
+            if UIDevice.current.orientation == .portrait{
+                return AnyView(self.navigationViewStyle(.stack))
+            }else{
+                return AnyView(self.navigationViewStyle(.columns))
+            }
+            
         }
     }
 }
@@ -32,5 +48,6 @@ struct MenuView: View {
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
         MenuView()
+            .environmentObject(ConnectionData())
     }
 }

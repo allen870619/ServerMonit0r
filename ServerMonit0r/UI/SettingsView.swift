@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @StateObject var data = SettingsData()
+    @StateObject var settingsData = SettingsData()
+    @EnvironmentObject var serverData: ConnectionData
     
     @FocusState var ipFocus: Bool
     @FocusState var portFocus: Bool
@@ -16,19 +17,19 @@ struct SettingsView: View {
     var body: some View {
         Form{
             Section("connSetting".toNSL()){
-                IpPack(ipValue: $data.ipValue, ipFocus: $ipFocus)
-                PortPack(portValue: $data
-                    .portValue, portFocus: $portFocus)
+                ConnField(title: "ip".toNSL(), value: $settingsData.ipValue, focus: $ipFocus, defValue: "127.0.0.1")
+                ConnField(title: "port".toNSL(), value: $settingsData.portValue, focus: $portFocus, defValue: "9943")
             }
             
             Section("prefSetting".toNSL()){
-                Toggle("srcAlwaysOn".toNSL(), isOn: $data.scrAlwaysOn)
-                Toggle("autoConnect".toNSL(), isOn: $data.autoConnect)
-                Picker("unit", selection: $data.selUnit){
-                    ForEach(data.unit, id: \.self){ i in
+                Toggle("srcAlwaysOn".toNSL(), isOn: $settingsData.scrAlwaysOn)
+                Toggle("autoConnect".toNSL(), isOn: $settingsData.autoConnect)
+                Picker("unit", selection: $settingsData.selUnit){
+                    ForEach(settingsData.unit, id: \.self){ i in
                         Text("\(i)")
                     }
-                }.pickerStyle(.segmented)
+                }
+                .pickerStyle(.segmented)
             }
         }
         .navigationTitle("settings".toNSL())
@@ -36,11 +37,15 @@ struct SettingsView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing){
                 Spacer()
                 Button("save".toNSL()){
-                    data.onSave()
-                }.alert(data.alertTitle, isPresented: $data.showAlert, actions: {
+                    settingsData.onSave()
+                    if settingsData.checkInput() == .noError{
+                        serverData.disconnect()
+                    }
+                }
+                .alert(settingsData.alertTitle, isPresented: $settingsData.showAlert, actions: {
                     Button("ok".toNSL()) { }
                 }, message: {
-                    if let msg = data.errMessage{
+                    if let msg = settingsData.errMessage{
                         Text(msg)
                     }
                 })
@@ -68,44 +73,27 @@ struct SettingsView: View {
                 }
             }
         }
+        .foregroundColor(.textColor)
     }
 }
 
-struct IpPack: View{
-    var ipValue: Binding<String>
-    var ipFocus: FocusState<Bool>.Binding
-    let ipDefault = "127.0.0.1"
+struct ConnField: View{
+    var title: String
+    var value: Binding<String>
+    var focus: FocusState<Bool>.Binding
+    let defValue: String
     
     var body: some View {
         VStack{
             HStack{
-                Text("ip".toNSL())
+                Text(title)
                 Spacer()
             }
-            TextField(ipDefault, text: ipValue)
-                .font(.system(size: 18))
-                .keyboardType(.decimalPad)
-                .focused(ipFocus)
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-struct PortPack: View{
-    var portValue: Binding<String>
-    var portFocus: FocusState<Bool>.Binding
-    let portDefault = 9943
-    
-    var body: some View {
-        VStack{
-            HStack{
-                Text("port".toNSL())
-                Spacer()
-            }
-            TextField(String(portDefault), text: portValue)
+            TextField(String(defValue), text: value)
                 .font(.system(size: 18))
                 .keyboardType(.numberPad)
-                .focused(portFocus)
+                .foregroundColor(.textColor)
+                .focused(focus)
         }
         .padding(.vertical, 4)
     }
