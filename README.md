@@ -10,7 +10,7 @@
 * SwiftUI
 
 ## Knowning Issue
-* Server end is incomplete. It's difficult for me to get some system info using Python.
+* [Server end](https://github.com/allen870619/ServerMonit0r-server) is incomplete. It's difficult for me to get some system info using Python.
 * This is my training project for SwiftUI, it might have some improper or bad code. Feel free to tell me!
 
 ## Author
