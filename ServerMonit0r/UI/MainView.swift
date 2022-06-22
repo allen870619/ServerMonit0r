@@ -40,14 +40,14 @@ struct MainView: View {
                     Text(connectionData.btnText)
                         .padding(8)
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(.backgroundColor)
-                        .background(Color.accentVariantColor)
+                        .foregroundColor(.textColor)
+                        .background(Color.accentColor)
                         .cornerRadius(8)
                 })
                 .padding(.horizontal, 16)
             }
             .padding(.vertical, 16)
-            .background(Color.accentColor)
+            .background(Color.accentVariantColor)
         }
         .alert(connectionData.alertTitle, isPresented: $connectionData.alertIsPresented, actions: {
             Button("ok".toNSL()) { }
