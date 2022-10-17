@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var connectionData: ConnectionData
-    
+
     var body: some View {
-        VStack{
-            ScrollView{
-                VStack{
+        VStack {
+            ScrollView {
+                VStack {
                     CustomProgressView(title: "cpuUsage".toNSL(), titleValue: connectionData.cpuUsageHint, percent: connectionData.cpuUsage)
                         .padding(.vertical, 16)
                     CustomProgressView(title: "cpuTemp".toNSL(), titleValue: connectionData.cpuTempHint, percent: connectionData.cpuTemp)
@@ -32,8 +32,8 @@ struct MainView: View {
                 .padding(.horizontal, 16)
             }
             .navigationTitle("Server Monit0r")
-            
-            ZStack{
+
+            ZStack {
                 Button(action: {
                     connectionData.onConnectClick()
                 }, label: {
@@ -50,9 +50,9 @@ struct MainView: View {
             .background(Color.accentVariantColor)
         }
         .alert(connectionData.alertTitle, isPresented: $connectionData.alertIsPresented, actions: {
-            Button("ok".toNSL()) { }
+            Button("ok".toNSL()) {}
         }, message: {
-            if let msg = connectionData.alertMsg{
+            if let msg = connectionData.alertMsg {
                 Text(msg)
             }
         })
@@ -63,30 +63,30 @@ struct MainView: View {
 /**
  progress view
  */
-struct CustomProgressView: View{
+struct CustomProgressView: View {
     var title: String
     var titleValue: String?
     var percent: Double
-    
-    var body: some View{
-        VStack{
-            HStack{
+
+    var body: some View {
+        VStack {
+            HStack {
                 Text(title)
                     .font(.system(size: 18))
                     .foregroundColor(.textColor)
                     .multilineTextAlignment(.leading)
                     .frame(alignment: .leading)
-                if let hintValue = titleValue{
+                if let hintValue = titleValue {
                     Text(hintValue)
                         .font(.system(size: 18))
                         .foregroundColor(.textColor)
                         .multilineTextAlignment(.leading)
-                        .frame(maxWidth:.infinity, alignment: .leading)
-                }else{
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                } else {
                     Spacer()
                 }
             }
-            GeometryReader(){geometer in // 用來測量框架大小的
+            GeometryReader { geometer in // 用來測量框架大小的
                 Rectangle()
                     .frame(height: 16)
                     .foregroundColor(.accentColor)
@@ -100,22 +100,22 @@ struct CustomProgressView: View{
 /**
  text view
  */
-struct CustomTextView: View{
+struct CustomTextView: View {
     let title: String
     let value: String
-    
-    var body: some View{
-        VStack{
+
+    var body: some View {
+        VStack {
             Text(title)
                 .font(.system(size: 18))
                 .foregroundColor(.textColor)
                 .multilineTextAlignment(.leading)
-                .frame(maxWidth:.infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(value)
                 .font(.system(size: 18))
                 .foregroundColor(.textColor)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth:.infinity, alignment: .center)
+                .frame(maxWidth: .infinity, alignment: .center)
         }
     }
 }

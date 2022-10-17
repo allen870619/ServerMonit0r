@@ -7,14 +7,14 @@
 
 import Foundation
 import SwiftUI
-extension String{
-    func toNSL() -> String{
-        return NSLocalizedString(self, comment: self)
+extension String {
+    func toNSL() -> String {
+        NSLocalizedString(self, comment: self)
     }
 }
 
-extension Double{
-    func roundTo(_ digits: Int) -> Double{
+extension Double {
+    func roundTo(_ digits: Int) -> Double {
         let decimal = Double(truncating: pow(10, digits) as NSNumber)
         return (self * decimal).rounded() / decimal
     }

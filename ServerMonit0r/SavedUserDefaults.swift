@@ -7,83 +7,83 @@
 
 import Foundation
 
-class SavedUserDefaults{
+class SavedUserDefaults {
     /**
      IP address
      */
-    static var ipAddr: String{
-        get{
+    static var ipAddr: String {
+        get {
             UserDefaults().string(forKey: "ipAddr") ?? ""
         }
-        set{
+        set {
             UserDefaults().set(newValue, forKey: "ipAddr")
         }
     }
-    
+
     /**
      Port number
      */
-    static var port: String{
-        get{
+    static var port: String {
+        get {
             UserDefaults().string(forKey: "port") ?? ""
         }
-        set{
+        set {
             UserDefaults().set(newValue, forKey: "port")
         }
     }
-    
+
     /**
      Screen always on.
      */
-    static var srcAlwaysOn: Bool{
-        get{
+    static var srcAlwaysOn: Bool {
+        get {
             UserDefaults().bool(forKey: "srcAlwaysOn")
         }
-        set{
+        set {
             UserDefaults().set(newValue, forKey: "srcAlwaysOn")
         }
     }
-    
+
     /**
      Auto connect when enter dashboard
      */
-    static var autoConn: Bool{
-        get{
+    static var autoConn: Bool {
+        get {
             UserDefaults().bool(forKey: "autoConn")
         }
-        set{
+        set {
             UserDefaults().set(newValue, forKey: "autoConn")
         }
     }
-    
+
     /**
      Network speed unit
-     
+
      0: MB/s
      1: Mbps
      */
-    static var spdUnit: Int{
-        get{
+    static var spdUnit: Int {
+        get {
             UserDefaults().integer(forKey: "spdUnit")
         }
-        set{
+        set {
             UserDefaults().set(newValue, forKey: "spdUnit")
         }
     }
-    
+
     /**
      Manual connect by user
      */
-    static var manualConn: Bool{
-        get{
+    static var manualConn: Bool {
+        get {
             UserDefaults().bool(forKey: "manualConn")
         }
-        set{
+        set {
             UserDefaults().set(newValue, forKey: "manualConn")
         }
     }
-    
-    static func test(){
+
+    static func test() {
         print(ipAddr)
         print(port)
         print(srcAlwaysOn)

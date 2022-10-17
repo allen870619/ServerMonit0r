@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct MenuView: View {
-    @State private var selection : String? = "dashboard".toNSL()
+    @State private var selection: String? = "dashboard".toNSL()
     let menuList = ["dashboard".toNSL(), "settings".toNSL()]
-    
+
     var body: some View {
-        NavigationView{
-            List(menuList, id: \.self){ element  in
-                NavigationLink(tag: element, selection: $selection){
-                    if selection == "dashboard".toNSL(){
+        NavigationView {
+            List(menuList, id: \.self) { element in
+                NavigationLink(tag: element, selection: $selection) {
+                    if selection == "dashboard".toNSL() {
                         MainView()
-                    }else{
+                    } else {
                         SettingsView()
                     }
                 } label: {
@@ -33,14 +33,13 @@ struct MenuView: View {
 extension View {
     func customNavStyle() -> some View {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return AnyView(self.navigationViewStyle(.columns))
+            return AnyView(navigationViewStyle(.columns))
         } else {
-            if UIDevice.current.orientation == .portrait{
-                return AnyView(self.navigationViewStyle(.stack))
-            }else{
-                return AnyView(self.navigationViewStyle(.columns))
+            if UIDevice.current.orientation == .portrait {
+                return AnyView(navigationViewStyle(.stack))
+            } else {
+                return AnyView(navigationViewStyle(.columns))
             }
-            
         }
     }
 }

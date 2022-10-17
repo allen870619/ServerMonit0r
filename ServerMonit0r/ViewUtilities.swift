@@ -6,22 +6,16 @@
 //
 
 import SwiftUI
-extension Color {
-    public static var accentVariantColor: Color {
-        get{
-            return Color("AccentVariantColor")
-        }
+public extension Color {
+    static var accentVariantColor: Color {
+        Color("AccentVariantColor")
     }
-    
-    public static var backgroundColor: Color {
-        get{
-            return Color("BackgroundColor")
-        }
+
+    static var backgroundColor: Color {
+        Color("BackgroundColor")
     }
-    
-    public static var textColor: Color {
-        get{
-            return Color("TextColor")
-        }
+
+    static var textColor: Color {
+        Color("TextColor")
     }
 }
