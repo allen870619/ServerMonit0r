@@ -141,7 +141,7 @@ class ConnectionData: ObservableObject {
                     self?.disconnect()
                 }
             } else {
-                if let content = content {
+                if let content {
                     let json = JSON(content)
                     DispatchQueue.main.async { [weak self] in
                         // usage

@@ -9,19 +9,24 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject var connectionData: ConnectionData
+    private let verticalGridConfig = [GridItem(.flexible()), GridItem(.flexible())]
 
     var body: some View {
         VStack {
             ScrollView {
-                VStack {
-                    CustomProgressView(title: "cpuUsage".toNSL(), titleValue: connectionData.cpuUsageHint, percent: connectionData.cpuUsage)
-                        .padding(.vertical, 16)
-                    CustomProgressView(title: "cpuTemp".toNSL(), titleValue: connectionData.cpuTempHint, percent: connectionData.cpuTemp)
-                        .padding(.vertical, 16)
-                    CustomProgressView(title: "cpuFreq".toNSL(), titleValue: connectionData.cpuFreqHint, percent: connectionData.cpuFreq)
-                        .padding(.vertical, 16)
-                    CustomProgressView(title: "memUsage".toNSL(), titleValue: connectionData.memUsageHint, percent: connectionData.memUsage)
-                        .padding(.vertical, 16)
+                LazyVGrid(columns: verticalGridConfig) {
+                    MonitorGauge(progress: connectionData.cpuUsage, hint: "cpuUsage".toNSL())
+                    MonitorGauge(progress: connectionData.cpuTemp, hint: "cpuTemp".toNSL())
+                    MonitorGauge(progress: connectionData.cpuFreq, hint: "cpuFreq".toNSL())
+                    MonitorGauge(progress: connectionData.memUsage, hint: "memUsage".toNSL())
+//                    CustomProgressView(title: "cpuUsage".toNSL(), titleValue: connectionData.cpuUsageHint, percent: connectionData.cpuUsage)
+//                        .padding(.vertical, 16)
+//                    CustomProgressView(title: "cpuTemp".toNSL(), titleValue: connectionData.cpuTempHint, percent: connectionData.cpuTemp)
+//                        .padding(.vertical, 16)
+//                    CustomProgressView(title: "cpuFreq".toNSL(), titleValue: connectionData.cpuFreqHint, percent: connectionData.cpuFreq)
+//                        .padding(.vertical, 16)
+//                    CustomProgressView(title: "memUsage".toNSL(), titleValue: connectionData.memUsageHint, percent: connectionData.memUsage)
+//                        .padding(.vertical, 16)
                     CustomTextView(title: "uptime".toNSL(), value: connectionData.uptime)
                         .padding(.vertical, 16)
                     CustomTextView(title: "downloadSpd".toNSL(), value: connectionData.dlSpeed)

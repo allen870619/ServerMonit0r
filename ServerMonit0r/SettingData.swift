@@ -5,12 +5,11 @@
 //  Created by Lee Yen Lin on 2022/6/15.
 //
 
-import Foundation
 import UIKit
 
 class SettingsData: ObservableObject {
-    @Published var ipValue = ""
-    @Published var portValue = ""
+    @Published var ipValue = "127.0.0.1"
+    @Published var portValue = "9943"
     @Published var scrAlwaysOn: Bool = false
     @Published var autoConnect: Bool = true
     @Published var selUnit: String = "spdUnitMbps".toNSL()
@@ -29,6 +28,7 @@ class SettingsData: ObservableObject {
         selUnit = unit[SavedUserDefaults.spdUnit]
     }
 
+    /// Save setting
     func onSave() {
         let checkResult = checkInput()
         if checkResult == .noError {
@@ -61,28 +61,22 @@ class SettingsData: ObservableObject {
         }
     }
 
-    /**
-     Check input format
-     */
+    /// Check input format
     func checkInput() -> ErrorType {
         // check ip
         if ipValue != "" {
-            let ip = ipValue.split(separator: ".")
-            if ip.count != 4 {
+            let ipSeg = ipValue.split(separator: ".")
+            if ipSeg.count != 4 {
                 return .ipFormat
             }
-            for i in ip {
-                if UInt8(i) == nil {
-                    return .ipFormat
-                }
+            if ipSeg.contains(where: { UInt8($0) == nil }) {
+                return .ipFormat
             }
         }
 
         // check port
-        if portValue != "" {
-            if UInt16(portValue) == nil {
-                return .portFormat
-            }
+        if UInt16(portValue) == nil {
+            return .portFormat
         }
 
         return .noError

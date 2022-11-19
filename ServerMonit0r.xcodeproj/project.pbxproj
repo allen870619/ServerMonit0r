@@ -22,6 +22,7 @@
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
 		9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF408327F6FB8F00A68C81 /* SettingsView.swift */; };
 		9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3F20628587A310050C4BC /* SwiftyJSON */; };
+		9FEAF3E4291A92C500BC2FF8 /* MonitorGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorGauge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 				9FC4D7D927F5A80800168CC6 /* MenuView.swift */,
 				9F62CC2C27EDB966007AE814 /* MainView.swift */,
 				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
+				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -169,6 +172,7 @@
 				9F62CBF927EDA4E0007AE814 /* Sources */,
 				9F62CBFA27EDA4E0007AE814 /* Frameworks */,
 				9F62CBFB27EDA4E0007AE814 /* Resources */,
+				9F4599E82928BDEB00FB6028 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -226,7 +230,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1410;
 				TargetAttributes = {
 					9F62CBFC27EDA4E0007AE814 = {
 						CreatedOnToolsVersion = 13.3;
@@ -292,6 +296,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9F4599E82928BDEB00FB6028 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nswiftformat .\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9F62CBF927EDA4E0007AE814 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -301,6 +326,7 @@
 				9F6F53702861512200068AC8 /* SavedUserDefaults.swift in Sources */,
 				9F6F53742861514A00068AC8 /* Utilities.swift in Sources */,
 				9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */,
+				9FEAF3E4291A92C500BC2FF8 /* MonitorGauge.swift in Sources */,
 				9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */,
 				9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */,
 				9F62CC2D27EDB966007AE814 /* MainView.swift in Sources */,
@@ -357,6 +383,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -417,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -484,7 +512,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,7 +543,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

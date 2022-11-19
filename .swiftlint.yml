@@ -1,0 +1,41 @@
+disabled_rules:
+  - colon
+  - comma
+  - trailing_comma
+  - control_statement
+opt_in_rules:
+  - empty_count
+  - missing_docs
+#included:
+#  - TPProjectIOS
+excluded:
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift
+  
+# rules
+force_cast: warning
+force_try: warning
+line_length: 160
+function_body_length:
+    warning: 160
+type_body_length:
+  warning: 400
+  error: 600
+file_length:
+  warning: 500
+  error: 1200
+type_name:
+  min_length: 3/0
+  max_length:
+    warning: 40
+  allowed_symbols: ["_"]
+large_tuple:
+    warning: 2
+identifier_name:
+  min_length: 2
+  allowed_symbols:
+    - "_"
+  validates_start_with_lowercase: false
+reporter: "xcode"

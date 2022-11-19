@@ -25,8 +25,8 @@ struct SettingsView: View {
                 Toggle("srcAlwaysOn".toNSL(), isOn: $settingsData.scrAlwaysOn)
                 Toggle("autoConnect".toNSL(), isOn: $settingsData.autoConnect)
                 Picker("unit", selection: $settingsData.selUnit) {
-                    ForEach(settingsData.unit, id: \.self) { i in
-                        Text("\(i)")
+                    ForEach(settingsData.unit, id: \.self) { text in
+                        Text("\(text)")
                     }
                 }
                 .pickerStyle(.segmented)
@@ -54,15 +54,15 @@ struct SettingsView: View {
                 Button(action: {
                     ipFocus = true
                     portFocus = false
-                }) {
+                }, label: {
                     Image(uiImage: UIImage(systemName: "chevron.up")!)
-                }
+                })
                 Button(action: {
                     ipFocus = false
                     portFocus = true
-                }) {
+                }, label: {
                     Image(uiImage: UIImage(systemName: "chevron.down")!)
-                }
+                })
                 Spacer()
                 Button("done".toNSL()) {
                     if ipFocus {

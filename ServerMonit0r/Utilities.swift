@@ -6,10 +6,18 @@
 //
 
 import Foundation
-import SwiftUI
+
 extension String {
     func toNSL() -> String {
         NSLocalizedString(self, comment: self)
+    }
+
+    var emptyToNil: String? {
+        if self == "" {
+            return nil
+        } else {
+            return self
+        }
     }
 }
 
