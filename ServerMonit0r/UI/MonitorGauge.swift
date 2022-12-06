@@ -8,27 +8,71 @@
 import SwiftUI
 
 struct MonitorGauge: View {
-    var progress = 0.0
+    var value: Double
     var hint: String = ""
+    var type: GaugeType = .raw
+
+    /// calculate percentage of value
+    ///
+    /// depends on type
+    private var progress: Double {
+        var tmpValue = value
+        switch type {
+        case .percent:
+            return tmpValue
+        case .temp:
+            tmpValue /= 100
+        case .freq:
+            tmpValue -= 800
+            tmpValue /= 6000
+        case .raw:
+            break
+        }
+
+        // check bound
+        if tmpValue > 1 {
+            return 1
+        } else if tmpValue < 0 {
+            return 0
+        }
+        return tmpValue
+    }
 
     var body: some View {
         ZStack {
             Gauge(value: progress) {} currentValueLabel: {
-                Text(progress.roundTo(3).formatted(.percent))
+                getText()
             }
             .gaugeStyle(SpeedoGaugeStyle(hint: hint))
             .tint(.blue)
             .padding(16)
         }
     }
+
+    func getText() -> Text {
+        switch type {
+        case .percent:
+            return Text(value.roundTo(3).formatted(.percent))
+        case .temp:
+            return Text("\(value.roundTo(2).formatted()) ºC")
+        case .freq:
+            return Text("\(value.rounded().formatted()) MHz")
+        default:
+            return Text("\(value)")
+        }
+    }
 }
 
 struct SpeedoGaugeStyle: GaugeStyle {
-    private var purpleGradient = LinearGradient(gradient: Gradient(colors: [.gradientStart,
-                                                                            .gradientMiddle,
-                                                                            .gradientEnd]),
-    startPoint: .trailing,
-    endPoint: .leading)
+    private var purpleGradient = LinearGradient(
+        gradient: Gradient(colors: [
+            .gradientStart,
+            .gradientMiddle,
+            .gradientEnd,
+        ]),
+        startPoint: .trailing,
+        endPoint: .leading
+    )
     var hint: String
 
     init(hint: String) {
@@ -45,14 +89,14 @@ struct SpeedoGaugeStyle: GaugeStyle {
             Circle()
                 .trim(from: 0, to: 0.75)
                 .stroke(Color(.systemGray4),
-                        style: .init(lineWidth: 16,
+                        style: .init(lineWidth: 12,
                                      lineCap: .round))
                 .rotationEffect(.degrees(135))
 
             // value
             Circle()
                 .trim(from: 0, to: 0.75 * configuration.value)
-                .stroke(purpleGradient, style: .init(lineWidth: 16, lineCap: .round))
+                .stroke(purpleGradient, style: .init(lineWidth: 12, lineCap: .round))
                 .rotationEffect(.degrees(135))
 
             // measure
@@ -67,19 +111,32 @@ struct SpeedoGaugeStyle: GaugeStyle {
 
             VStack {
                 configuration.currentValueLabel
-                    .font(.system(size: 36, weight: .bold, design: .rounded))
-                    .foregroundColor(.gray)
-                Text(hint)
-                    .font(.system(.title3, design: .rounded))
+                    .font(.system(.title, design: .rounded))
                     .bold()
+                    .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
+                    .padding(.horizontal, 8)
+                if !hint.isEmpty {
+                    Text(hint)
+                        .font(.system(.title3, design: .rounded))
+                        .bold()
+                        .foregroundColor(.gray)
+                        .padding(.horizontal, 8)
+                }
             }
         }
     }
 }
 
+enum GaugeType {
+    case percent
+    case temp
+    case freq
+    case raw
+}
+
 struct MonitorGauge_Previews: PreviewProvider {
     static var previews: some View {
-        MonitorGauge(progress: 0.4, hint: "test").previewLayout(.fixed(width: 300, height: 300))
+        MonitorGauge(value: 0.3, hint: "test", type: .raw).previewLayout(.fixed(width: 300, height: 300))
     }
 }

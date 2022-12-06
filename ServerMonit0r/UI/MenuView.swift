@@ -8,37 +8,25 @@
 import SwiftUI
 
 struct MenuView: View {
-    @State private var selection: String? = "dashboard".toNSL()
-    let menuList = ["dashboard".toNSL(), "settings".toNSL()]
+    private let menuList = ["dashboard", "settings"]
+    @State private var selectedPage: String? = "dashboard"
 
     var body: some View {
-        NavigationView {
-            List(menuList, id: \.self) { element in
-                NavigationLink(tag: element, selection: $selection) {
-                    if selection == "dashboard".toNSL() {
-                        MainView()
-                    } else {
-                        SettingsView()
-                    }
-                } label: {
-                    Text(element)
-                }
-                .navigationTitle("menu".toNSL())
+        NavigationSplitView {
+            List(menuList, id: \.self, selection: $selectedPage) { str in
+                Text(str.toNSL())
             }
+            .navigationTitle("menu".toNSL())
             .foregroundColor(.textColor)
-        }
-    }
-}
-
-extension View {
-    func customNavStyle() -> some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return AnyView(navigationViewStyle(.columns))
-        } else {
-            if UIDevice.current.orientation == .portrait {
-                return AnyView(navigationViewStyle(.stack))
+        } detail: {
+            if let selectedPage {
+                if selectedPage == "dashboard" {
+                    MainView()
+                } else if selectedPage == "settings" {
+                    SettingsView()
+                }
             } else {
-                return AnyView(navigationViewStyle(.columns))
+                MainView()
             }
         }
     }

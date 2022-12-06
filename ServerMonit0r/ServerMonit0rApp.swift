@@ -35,13 +35,9 @@ struct ServerMonit0rApp: App {
 class ConnectionData: ObservableObject {
     // ui data
     @Published var cpuUsage: Double = 0
-    @Published var cpuUsageHint: String?
     @Published var cpuTemp: Double = 0
-    @Published var cpuTempHint: String?
     @Published var cpuFreq: Double = 0
-    @Published var cpuFreqHint: String?
     @Published var memUsage: Double = 0
-    @Published var memUsageHint: String?
     @Published var uptime: String = "N/A"
     @Published var dlSpeed: String = "N/A"
     @Published var ulSpeed: String = "N/A"
@@ -147,22 +143,18 @@ class ConnectionData: ObservableObject {
                         // usage
                         let usage = json["cpu"]["cpuUsage"].doubleValue
                         self?.cpuUsage = usage / 100
-                        self?.cpuUsageHint = "\(usage) %"
 
                         // temperature
                         let temp = json["cpu"]["cpuTemp"].doubleValue.roundTo(1)
-                        self?.cpuTemp = temp == -1000 ? 0 : temp / 100
-                        self?.cpuTempHint = temp == -1000 ? "n/a".toNSL() : "\(temp) ºC"
+                        self?.cpuTemp = temp
 
                         // freq
                         let freq = json["cpu"]["cpuFreq"].doubleValue.roundTo(2)
-                        self?.cpuFreq = json["cpu"]["cpuFreq"].doubleValue / 5000
-                        self?.cpuFreqHint = "\(freq) Mhz"
+                        self?.cpuFreq = freq
 
                         // memory
                         let mem = json["mem"]["memUsage"].doubleValue.roundTo(1)
                         self?.memUsage = mem / 100
-                        self?.memUsageHint = "\(mem) %"
 
                         // other
                         self?.uptime = json["other"]["upTime"].stringValue
@@ -225,13 +217,9 @@ class ConnectionData: ObservableObject {
     /// clear ui data
     private func clearUi() {
         cpuUsage = 0
-        cpuUsageHint = nil
         cpuTemp = 0
-        cpuTempHint = nil
         cpuFreq = 0
-        cpuFreqHint = nil
         memUsage = 0
-        memUsageHint = nil
         uptime = "N/A"
         dlSpeed = "N/A"
         ulSpeed = "N/A"
