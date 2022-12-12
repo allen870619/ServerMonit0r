@@ -92,4 +92,13 @@ class SettingsData: ObservableObject {
 enum SpdUnit: Int {
     case mbps = 0
     case MBs = 1
+
+    func getName() -> String {
+        switch self {
+        case .MBs:
+            return "MB/s"
+        case .mbps:
+            return "Mbps"
+        }
+    }
 }

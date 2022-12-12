@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @StateObject var settingsData = SettingsData()
-    @EnvironmentObject var serverData: ConnectionData
+    @StateObject var serverData = SocketConnection.shared
 
     @FocusState var ipFocus: Bool
     @FocusState var portFocus: Bool
@@ -39,6 +39,8 @@ struct SettingsView: View {
                 Button("save".toNSL()) {
                     settingsData.onSave()
                     if settingsData.checkInput() == .noError {
+                        ipFocus = false
+                        portFocus = false
                         serverData.disconnect()
                     }
                 }

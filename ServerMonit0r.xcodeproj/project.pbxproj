@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F02E5C229430B4200F55C35 /* SocketConnection.swift */; };
+		9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B4292946CF7000FF69BC /* SocketEntity.swift */; };
+		9F47B42C2946DAF100FF69BC /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B42B2946DAF100FF69BC /* extension.swift */; };
 		9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */; };
 		9F62CC0527EDA4E2007AE814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F62CC0427EDA4E2007AE814 /* Assets.xcassets */; };
 		9F62CC0827EDA4E2007AE814 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F62CC0727EDA4E2007AE814 /* Preview Assets.xcassets */; };
@@ -22,6 +25,7 @@
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
 		9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF408327F6FB8F00A68C81 /* SettingsView.swift */; };
 		9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3F20628587A310050C4BC /* SwiftyJSON */; };
+		9FE367A02941B20200E6C60B /* CustomProgressbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */; };
 		9FEAF3E4291A92C500BC2FF8 /* MonitorGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F02E5C229430B4200F55C35 /* SocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
+		9F47B4292946CF7000FF69BC /* SocketEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEntity.swift; sourceTree = "<group>"; };
+		9F47B42B2946DAF100FF69BC /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
 		9F62CBFD27EDA4E0007AE814 /* ServerMonit0r.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServerMonit0r.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMonit0rApp.swift; sourceTree = "<group>"; };
 		9F62CC0427EDA4E2007AE814 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +68,7 @@
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressbar.swift; sourceTree = "<group>"; };
 		9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonitorGauge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,6 +98,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F02E5C129430B2B00F55C35 /* socketConn */ = {
+			isa = PBXGroup;
+			children = (
+				9F02E5C229430B4200F55C35 /* SocketConnection.swift */,
+			);
+			path = socketConn;
+			sourceTree = "<group>";
+		};
+		9F02E5C429430BB300F55C35 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				9F6F53732861514A00068AC8 /* Utilities.swift */,
+				9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */,
+				9F47B42B2946DAF100FF69BC /* extension.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		9F47B4272946CCC600FF69BC /* data */ = {
+			isa = PBXGroup;
+			children = (
+				9F47B4282946CEA500FF69BC /* entity */,
+				9F6F536F2861512200068AC8 /* SavedUserDefaults.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		9F47B4282946CEA500FF69BC /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				9F47B4292946CF7000FF69BC /* SocketEntity.swift */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
 		9F62CBF427EDA4E0007AE814 = {
 			isa = PBXGroup;
 			children = (
@@ -113,15 +156,15 @@
 		9F62CBFF27EDA4E0007AE814 /* ServerMonit0r */ = {
 			isa = PBXGroup;
 			children = (
-				9F62CC0427EDA4E2007AE814 /* Assets.xcassets */,
-				9F6F5379286151BF00068AC8 /* Localizable.strings */,
-				9F62CC0627EDA4E2007AE814 /* Preview Content */,
-				9F6F536F2861512200068AC8 /* SavedUserDefaults.swift */,
 				9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */,
 				9F6F53712861512D00068AC8 /* SettingData.swift */,
-				9FCF408227F6E5DF00A68C81 /* UI */,
-				9F6F53732861514A00068AC8 /* Utilities.swift */,
-				9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */,
+				9F62CC0427EDA4E2007AE814 /* Assets.xcassets */,
+				9F6F5379286151BF00068AC8 /* Localizable.strings */,
+				9F47B4272946CCC600FF69BC /* data */,
+				9F62CC0627EDA4E2007AE814 /* Preview Content */,
+				9F02E5C129430B2B00F55C35 /* socketConn */,
+				9FCF408227F6E5DF00A68C81 /* ui */,
+				9F02E5C429430BB300F55C35 /* utils */,
 			);
 			path = ServerMonit0r;
 			sourceTree = "<group>";
@@ -151,15 +194,16 @@
 			path = ServerMonit0rUITests;
 			sourceTree = "<group>";
 		};
-		9FCF408227F6E5DF00A68C81 /* UI */ = {
+		9FCF408227F6E5DF00A68C81 /* ui */ = {
 			isa = PBXGroup;
 			children = (
 				9FC4D7D927F5A80800168CC6 /* MenuView.swift */,
 				9F62CC2C27EDB966007AE814 /* MainView.swift */,
 				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
 				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
+				9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */,
 			);
-			path = UI;
+			path = ui;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +371,12 @@
 				9F6F53742861514A00068AC8 /* Utilities.swift in Sources */,
 				9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */,
 				9FEAF3E4291A92C500BC2FF8 /* MonitorGauge.swift in Sources */,
+				9FE367A02941B20200E6C60B /* CustomProgressbar.swift in Sources */,
 				9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */,
+				9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */,
+				9F47B42C2946DAF100FF69BC /* extension.swift in Sources */,
 				9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */,
+				9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */,
 				9F62CC2D27EDB966007AE814 /* MainView.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,
 			);

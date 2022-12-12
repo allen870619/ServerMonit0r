@@ -115,13 +115,13 @@ struct SpeedoGaugeStyle: GaugeStyle {
                     .bold()
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, 12)
                 if !hint.isEmpty {
                     Text(hint)
                         .font(.system(.title3, design: .rounded))
                         .bold()
                         .foregroundColor(.gray)
-                        .padding(.horizontal, 8)
+                        .padding(.horizontal, 12)
                 }
             }
         }
