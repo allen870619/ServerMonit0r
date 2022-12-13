@@ -43,6 +43,35 @@
 "downloadSpd" = "下載速度";
 "uploadSpd" = "上傳速度";
 
+// systemInfo
+"systemInfo" = "系統資訊";
+// os
+"pcName" = "電腦名稱";
+"osType" = "作業系統";
+"osVersion" = "系統版本";
+"machine" = "系統類型";
+"osRelease" = "建置版本";
+// cpu
+"modelName" = "型號";
+"vendor" = "製造商";
+"hardware" = "硬體";
+"physicalCore" = "物理核心數";
+"logicalCore" = "邏輯核心數";
+"l1Cache" = "L1快取";
+"l2Cache" = "L2快取";
+"l3Cache" = "L3快取";
+// mem
+"ramVirtual" = "實體記憶體";
+"ramSwap" = "交換記憶體";
+// disk
+"device" = "裝置";
+"mount" = "掛載點";
+"fstype" = "分區格式";
+"diskUsed" = "分區已用空間";
+"diskFree" = "分區大小";
+"diskPercent" = "使用率";
+"diskTotal" = "硬碟大小";
+
 // utils
 "ok" = "好";
 "done" = "完成";

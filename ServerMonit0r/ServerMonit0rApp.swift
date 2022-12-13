@@ -15,13 +15,6 @@ struct ServerMonit0rApp: App {
             SavedUserDefaults.manualConn = true
         }
         UIApplication.shared.isIdleTimerDisabled = !SavedUserDefaults.srcAlwaysOn
-
-        _ = Task {
-            let data = try await ApiRequest.getData(.systemInfo,
-                                                    method: .get,
-                                                    params: nil).json
-            print(data)
-        }
     }
 
     var body: some Scene {

@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MenuView: View {
-    private let menuList = ["dashboard", "settings"]
-    @State private var selectedPage: String? = "dashboard"
+    private let menuList = ["dashboard", "systemInfo", "settings"]
+    @State private var selectedPage: String? = "systemInfo"
 
     var body: some View {
         NavigationSplitView {
             List(menuList, id: \.self, selection: $selectedPage) { str in
-                Text(str.toNSL())
+                Text(str.toNSL()).padding(.vertical, 4)
             }
             .navigationTitle("menu".toNSL())
             .foregroundColor(.textColor)
@@ -22,6 +22,8 @@ struct MenuView: View {
             if let selectedPage {
                 if selectedPage == "dashboard" {
                     MainView()
+                } else if selectedPage == "systemInfo" {
+                    SystemInfoView()
                 } else if selectedPage == "settings" {
                     SettingsView()
                 }

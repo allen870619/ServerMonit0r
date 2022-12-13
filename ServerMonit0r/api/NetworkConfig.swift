@@ -19,7 +19,7 @@ struct NetworkTiming {
 
 enum NetworkConfig {
     private static let FORMAL_URL = "http://thxhf.work:8888"
-    private static let TEST_URL = "http://localhost:8888"
+    private static let TEST_URL = "http://127.0.0.1:8888"
 
     private static let BASE_URL = "/"
 

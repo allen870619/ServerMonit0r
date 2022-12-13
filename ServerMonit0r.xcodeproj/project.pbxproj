@@ -29,6 +29,8 @@
 		9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57C929480BA50099B27A /* ErrorType.swift */; };
 		9F9C57CC294822BC0099B27A /* SystemInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */; };
 		9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */; };
+		9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D2294849110099B27A /* SystemInfoView.swift */; };
+		9F9C57D52948529B0099B27A /* SystemInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D42948529B0099B27A /* SystemInfoData.swift */; };
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
 		9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF408327F6FB8F00A68C81 /* SettingsView.swift */; };
 		9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3F20628587A310050C4BC /* SwiftyJSON */; };
@@ -80,6 +82,8 @@
 		9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoEntity.swift; sourceTree = "<group>"; };
 		9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
 		9F9C57D0294823440099B27A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9F9C57D2294849110099B27A /* SystemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoView.swift; sourceTree = "<group>"; };
+		9F9C57D42948529B0099B27A /* SystemInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoData.swift; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressbar.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 				9F9C57CD294822FD0099B27A /* resource */,
 				9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */,
 				9F6F53712861512D00068AC8 /* SettingData.swift */,
+				9F9C57D42948529B0099B27A /* SystemInfoData.swift */,
 				9F62CC0427EDA4E2007AE814 /* Assets.xcassets */,
 				9F6F5379286151BF00068AC8 /* Localizable.strings */,
 				9F47B43029470A5C00FF69BC /* api */,
@@ -248,6 +253,7 @@
 				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
 				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
 				9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */,
+				9F9C57D2294849110099B27A /* SystemInfoView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -425,12 +431,14 @@
 				9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */,
 				9F47B43229470A7400FF69BC /* ConnectApi.swift in Sources */,
 				9F47B43429470A9200FF69BC /* ApiRequest.swift in Sources */,
+				9F9C57D52948529B0099B27A /* SystemInfoData.swift in Sources */,
 				9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */,
 				9F47B42C2946DAF100FF69BC /* Extension.swift in Sources */,
 				9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */,
 				9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */,
 				9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */,
 				9F62CC2D27EDB966007AE814 /* MainView.swift in Sources */,
+				9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */,
 				9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,
 			);

@@ -43,6 +43,35 @@
 "downloadSpd" = "Download Speed";
 "uploadSpd" = "Upload Speed";
 
+// systemInfo
+"systemInfo" = "System Info";
+// os
+"pcName" = "PC Name";
+"osType" = "OS";
+"osVersion" = "OS Version";
+"machine" = "OS Type";
+"osRelease" = "Build";
+// cpu
+"modelName" = "Model";
+"vendor" = "Vendor";
+"hardware" = "Hardware";
+"physicalCore" = "Physical Core";
+"logicalCore" = "Logical Core";
+"l1Cache" = "L1 Cache";
+"l2Cache" = "L2 Cache";
+"l3Cache" = "L3 Cache";
+// mem
+"ramVirtual" = "Virtual Ram";
+"ramSwap" = "Swap Ram";
+// disk
+"device" = "Device";
+"mount" = "Mount";
+"fstype" = "Partition Format";
+"diskUsed" = "Partition Used";
+"diskFree" = "Partition Size";
+"diskPercent" = "Used Percentage";
+"diskTotal" = "Disk Size";
+
 // utils
 "ok" = "OK";
 "done" = "Done";
