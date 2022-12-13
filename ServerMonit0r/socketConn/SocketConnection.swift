@@ -60,7 +60,7 @@ class SocketConnection: ObservableObject {
     ///
     /// Ip and Port will refresh if call this again.
     private func createConnection() {
-//        ip = SavedUserDefaults.ipAddr.isEmpty ? ip : SavedUserDefaults.ipAddr
+        ip = SavedUserDefaults.ipAddr.isEmpty ? ip : SavedUserDefaults.ipAddr
         port = SavedUserDefaults.port.isEmpty ? port : UInt16(SavedUserDefaults.port) ?? port
         conn = NWConnection(host: NWEndpoint.Host(ip),
                             port: NWEndpoint.Port(integerLiteral: port),
@@ -154,14 +154,14 @@ class SocketConnection: ObservableObject {
                         self.memUsage = data.mem.memUsage / 100
 
                         // network
-                        let rawDlSpd = data.net.netDownload
-                        let rawUlSpd = data.net.netUpload
+                        let rawDlSpd = data.net.netDownload.parseMegaBytes()
+                        let rawUlSpd = data.net.netUpload.parseMegaBytes()
                         if self.spdUnit == .MBs {
-                            self.dlSpeed = (rawDlSpd / 8).roundTo(2)
-                            self.ulSpeed = (rawUlSpd / 8).roundTo(2)
-                        } else {
                             self.dlSpeed = rawDlSpd.roundTo(2)
                             self.ulSpeed = rawUlSpd.roundTo(2)
+                        } else {
+                            self.dlSpeed = (rawDlSpd * 8).roundTo(2)
+                            self.ulSpeed = (rawUlSpd * 8).roundTo(2)
                         }
 
                         // other

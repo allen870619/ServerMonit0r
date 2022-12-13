@@ -56,7 +56,7 @@ struct MonitorGauge: View {
         case .temp:
             return Text("\(value.roundTo(2).formatted()) ºC")
         case .freq:
-            return Text("\(value.rounded().formatted()) MHz")
+            return Text("\(value.rounded().formatted())")
         default:
             return Text("\(value)")
         }
@@ -64,11 +64,28 @@ struct MonitorGauge: View {
 }
 
 struct SpeedoGaugeStyle: GaugeStyle {
-    private var purpleGradient = LinearGradient(
+    private var normalGradient = LinearGradient(
         gradient: Gradient(colors: [
-            .gradientStart,
-            .gradientMiddle,
-            .gradientEnd,
+            .gradientNormalStart,
+            .gradientNormalEnd,
+        ]),
+        startPoint: .trailing,
+        endPoint: .leading
+    )
+
+    private var fairGradient = LinearGradient(
+        gradient: Gradient(colors: [
+            .gradientFairStart,
+            .gradientFairEnd,
+        ]),
+        startPoint: .trailing,
+        endPoint: .leading
+    )
+
+    private var severeGradient = LinearGradient(
+        gradient: Gradient(colors: [
+            .gradientSevereStart,
+            .gradientSevereEnd,
         ]),
         startPoint: .trailing,
         endPoint: .leading
@@ -96,22 +113,22 @@ struct SpeedoGaugeStyle: GaugeStyle {
             // value
             Circle()
                 .trim(from: 0, to: 0.75 * configuration.value)
-                .stroke(purpleGradient, style: .init(lineWidth: 12, lineCap: .round))
+                .stroke(getGradient(configuration.value), style: .init(lineWidth: 12, lineCap: .round))
                 .rotationEffect(.degrees(135))
 
             // measure
             Circle()
                 .trim(from: 0, to: 0.75)
-                .stroke(Color.gray, style: StrokeStyle(lineWidth: 12,
-                                                       lineCap: .butt,
-                                                       lineJoin: .round,
-                                                       dash: [1, 30],
-                                                       dashPhase: 0.0))
+                .stroke(Color.white.opacity(0.75), style: StrokeStyle(lineWidth: 12,
+                                                                      lineCap: .butt,
+                                                                      lineJoin: .round,
+                                                                      dash: [1, 30],
+                                                                      dashPhase: 0.0))
                 .rotationEffect(.degrees(135))
 
             VStack {
                 configuration.currentValueLabel
-                    .font(.system(.title, design: .rounded))
+                    .font(.custom("ZenDots-Regular", size: 24, relativeTo: .title))
                     .bold()
                     .multilineTextAlignment(.center)
                     .foregroundColor(.gray)
@@ -126,6 +143,16 @@ struct SpeedoGaugeStyle: GaugeStyle {
             }
         }
     }
+
+    func getGradient(_ percent: Double) -> LinearGradient {
+        if percent < 0.4 {
+            return normalGradient
+        } else if percent < 0.8 {
+            return fairGradient
+        } else {
+            return severeGradient
+        }
+    }
 }
 
 enum GaugeType {
@@ -137,6 +164,9 @@ enum GaugeType {
 
 struct MonitorGauge_Previews: PreviewProvider {
     static var previews: some View {
-        MonitorGauge(value: 0.3, hint: "test", type: .raw).previewLayout(.fixed(width: 300, height: 300))
+        Group {
+            MonitorGauge(value: 0.3, hint: "test", type: .raw)
+                .previewLayout(.sizeThatFits)
+        }
     }
 }

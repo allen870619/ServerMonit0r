@@ -23,19 +23,34 @@ public extension Color {
         Color("TextColor")
     }
 
-    /// gauge gradient color - start
-    static var gradientStart: Color {
-        Color(red: 142 / 255, green: 202 / 255, blue: 230 / 255)
+    /// gauge gradient color - normal start
+    static var gradientNormalStart: Color {
+        Color(red: 0.56, green: 0.79, blue: 0.9)
     }
 
-    /// gauge gradient color - middle
-    static var gradientMiddle: Color {
-        Color(red: 142 / 255, green: 202 / 255, blue: 230 / 255)
+    /// gauge gradient color - normal end
+    static var gradientNormalEnd: Color {
+        Color(red: 0.96, green: 0.73, blue: 0.25)
     }
 
-    /// gauge gradient color - end
-    static var gradientEnd: Color {
-        Color(red: 142 / 255, green: 202 / 255, blue: 230 / 255)
+    /// gauge gradient color - fair start
+    static var gradientFairStart: Color {
+        Color(red: 0.41, green: 0.69, blue: 0.83)
+    }
+
+    /// gauge gradient color - fair end
+    static var gradientFairEnd: Color {
+        Color(red: 0.89, green: 0.50, blue: 0.28)
+    }
+
+    /// gauge gradient color - severe start
+    static var gradientSevereStart: Color {
+        Color(red: 0.25, green: 0.58, blue: 0.76)
+    }
+
+    /// gauge gradient color - severe end
+    static var gradientSevereEnd: Color {
+        Color(red: 0.83, green: 0.28, blue: 0.30)
     }
 }
 

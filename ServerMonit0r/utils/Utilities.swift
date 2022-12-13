@@ -26,4 +26,9 @@ extension Double {
         let decimal = Double(truncating: pow(10, digits) as NSNumber)
         return (self * decimal).rounded() / decimal
     }
+
+    func parseMegaBytes() -> Double {
+        let factor = 1024.0
+        return self / factor / factor
+    }
 }

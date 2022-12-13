@@ -27,6 +27,7 @@ struct MainView: View {
                                  hint: "cpuTemp".toNSL(),
                                  type: .temp)
                     MonitorGauge(value: connData.cpuFreq,
+                                 hint: "MHz",
                                  type: .freq)
                     MonitorGauge(value: connData.memUsage,
                                  hint: "memUsage".toNSL(),
@@ -115,7 +116,7 @@ struct CustomTextView: View {
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
             Text(unit == nil ? "\(value)" : "\(value) \(unit ?? "")")
-                .font(.system(size: 18))
+                .font(.custom("ZenDots-Regular", size: 18))
                 .foregroundColor(.textColor)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, alignment: .center)

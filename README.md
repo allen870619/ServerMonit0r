@@ -3,7 +3,7 @@
 ![Date](https://img.shields.io/github/last-commit/allen870619/ServerMonit0r?style=flat)
 # ServerMonit0r
 ### A simple app for monitoring your server/computer.
-![ScreenShot](https://i.imgur.com/6B4z69a.png)
+![ScreenShot](https://i.imgur.com/s7riuhX.png)
 
 ## Features
 * Simple Operation

@@ -9,7 +9,11 @@
 /* Begin PBXBuildFile section */
 		9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F02E5C229430B4200F55C35 /* SocketConnection.swift */; };
 		9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B4292946CF7000FF69BC /* SocketEntity.swift */; };
-		9F47B42C2946DAF100FF69BC /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B42B2946DAF100FF69BC /* extension.swift */; };
+		9F47B42C2946DAF100FF69BC /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B42B2946DAF100FF69BC /* Extension.swift */; };
+		9F47B42F29470A3500FF69BC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9F47B42E29470A3500FF69BC /* Alamofire */; };
+		9F47B43229470A7400FF69BC /* ConnectApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B43129470A7400FF69BC /* ConnectApi.swift */; };
+		9F47B43429470A9200FF69BC /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B43329470A9200FF69BC /* ApiRequest.swift */; };
+		9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B43529470FD000FF69BC /* NetworkConfig.swift */; };
 		9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */; };
 		9F62CC0527EDA4E2007AE814 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F62CC0427EDA4E2007AE814 /* Assets.xcassets */; };
 		9F62CC0827EDA4E2007AE814 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F62CC0727EDA4E2007AE814 /* Preview Assets.xcassets */; };
@@ -22,6 +26,9 @@
 		9F6F53742861514A00068AC8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F53732861514A00068AC8 /* Utilities.swift */; };
 		9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F5379286151BF00068AC8 /* Localizable.strings */; };
 		9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */; };
+		9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57C929480BA50099B27A /* ErrorType.swift */; };
+		9F9C57CC294822BC0099B27A /* SystemInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */; };
+		9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */; };
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
 		9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF408327F6FB8F00A68C81 /* SettingsView.swift */; };
 		9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3F20628587A310050C4BC /* SwiftyJSON */; };
@@ -49,7 +56,10 @@
 /* Begin PBXFileReference section */
 		9F02E5C229430B4200F55C35 /* SocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
 		9F47B4292946CF7000FF69BC /* SocketEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEntity.swift; sourceTree = "<group>"; };
-		9F47B42B2946DAF100FF69BC /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		9F47B42B2946DAF100FF69BC /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		9F47B43129470A7400FF69BC /* ConnectApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectApi.swift; sourceTree = "<group>"; };
+		9F47B43329470A9200FF69BC /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		9F47B43529470FD000FF69BC /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		9F62CBFD27EDA4E0007AE814 /* ServerMonit0r.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ServerMonit0r.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerMonit0rApp.swift; sourceTree = "<group>"; };
 		9F62CC0427EDA4E2007AE814 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -66,6 +76,10 @@
 		9F6F5378286151BF00068AC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F6F537A286151C000068AC8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
+		9F9C57C929480BA50099B27A /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
+		9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoEntity.swift; sourceTree = "<group>"; };
+		9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
+		9F9C57D0294823440099B27A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressbar.swift; sourceTree = "<group>"; };
@@ -78,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */,
+				9F47B42F29470A3500FF69BC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +126,8 @@
 			children = (
 				9F6F53732861514A00068AC8 /* Utilities.swift */,
 				9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */,
-				9F47B42B2946DAF100FF69BC /* extension.swift */,
+				9F9C57C929480BA50099B27A /* ErrorType.swift */,
+				9F47B42B2946DAF100FF69BC /* Extension.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -129,8 +145,19 @@
 			isa = PBXGroup;
 			children = (
 				9F47B4292946CF7000FF69BC /* SocketEntity.swift */,
+				9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */,
 			);
 			path = entity;
+			sourceTree = "<group>";
+		};
+		9F47B43029470A5C00FF69BC /* api */ = {
+			isa = PBXGroup;
+			children = (
+				9F47B43129470A7400FF69BC /* ConnectApi.swift */,
+				9F47B43329470A9200FF69BC /* ApiRequest.swift */,
+				9F47B43529470FD000FF69BC /* NetworkConfig.swift */,
+			);
+			path = api;
 			sourceTree = "<group>";
 		};
 		9F62CBF427EDA4E0007AE814 = {
@@ -156,10 +183,13 @@
 		9F62CBFF27EDA4E0007AE814 /* ServerMonit0r */ = {
 			isa = PBXGroup;
 			children = (
+				9F9C57D0294823440099B27A /* Info.plist */,
+				9F9C57CD294822FD0099B27A /* resource */,
 				9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */,
 				9F6F53712861512D00068AC8 /* SettingData.swift */,
 				9F62CC0427EDA4E2007AE814 /* Assets.xcassets */,
 				9F6F5379286151BF00068AC8 /* Localizable.strings */,
+				9F47B43029470A5C00FF69BC /* api */,
 				9F47B4272946CCC600FF69BC /* data */,
 				9F62CC0627EDA4E2007AE814 /* Preview Content */,
 				9F02E5C129430B2B00F55C35 /* socketConn */,
@@ -194,6 +224,22 @@
 			path = ServerMonit0rUITests;
 			sourceTree = "<group>";
 		};
+		9F9C57CD294822FD0099B27A /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				9F9C57CE294823070099B27A /* font */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
+		9F9C57CE294823070099B27A /* font */ = {
+			isa = PBXGroup;
+			children = (
+				9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */,
+			);
+			path = font;
+			sourceTree = "<group>";
+		};
 		9FCF408227F6E5DF00A68C81 /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +271,7 @@
 			name = ServerMonit0r;
 			packageProductDependencies = (
 				9FD3F20628587A310050C4BC /* SwiftyJSON */,
+				9F47B42E29470A3500FF69BC /* Alamofire */,
 			);
 			productName = ServerMonit0r;
 			productReference = 9F62CBFD27EDA4E0007AE814 /* ServerMonit0r.app */;
@@ -301,6 +348,7 @@
 			mainGroup = 9F62CBF427EDA4E0007AE814;
 			packageReferences = (
 				9FD3F20528587A310050C4BC /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				9F47B42D29470A3500FF69BC /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 9F62CBFE27EDA4E0007AE814 /* Products */;
 			projectDirPath = "";
@@ -319,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F62CC0827EDA4E2007AE814 /* Preview Assets.xcassets in Resources */,
+				9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */,
 				9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */,
 				9F62CC0527EDA4E2007AE814 /* Assets.xcassets in Resources */,
 			);
@@ -369,15 +418,20 @@
 				9F6F53722861512D00068AC8 /* SettingData.swift in Sources */,
 				9F6F53702861512200068AC8 /* SavedUserDefaults.swift in Sources */,
 				9F6F53742861514A00068AC8 /* Utilities.swift in Sources */,
+				9F9C57CC294822BC0099B27A /* SystemInfoEntity.swift in Sources */,
 				9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */,
 				9FEAF3E4291A92C500BC2FF8 /* MonitorGauge.swift in Sources */,
 				9FE367A02941B20200E6C60B /* CustomProgressbar.swift in Sources */,
 				9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */,
+				9F47B43229470A7400FF69BC /* ConnectApi.swift in Sources */,
+				9F47B43429470A9200FF69BC /* ApiRequest.swift in Sources */,
 				9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */,
-				9F47B42C2946DAF100FF69BC /* extension.swift in Sources */,
+				9F47B42C2946DAF100FF69BC /* Extension.swift in Sources */,
+				9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */,
 				9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */,
 				9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */,
 				9F62CC2D27EDB966007AE814 /* MainView.swift in Sources */,
+				9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,12 +608,11 @@
 				DEVELOPMENT_TEAM = CUT53EQ8B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ServerMonit0r/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -585,12 +638,11 @@
 				DEVELOPMENT_TEAM = CUT53EQ8B5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ServerMonit0r/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -723,6 +775,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9F47B42D29470A3500FF69BC /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		9FD3F20528587A310050C4BC /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -734,6 +794,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9F47B42E29470A3500FF69BC /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F47B42D29470A3500FF69BC /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		9FD3F20628587A310050C4BC /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9FD3F20528587A310050C4BC /* XCRemoteSwiftPackageReference "SwiftyJSON" */;

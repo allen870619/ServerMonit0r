@@ -12,24 +12,11 @@ struct CustomProgressbar: View {
     let minValue: Double
     let maxValue: Double
 
-    let gradient = LinearGradient(stops: [.init(color: .blue, location: 0),
-                                          .init(color: .blue, location: 0.5),
-                                          .init(color: .red, location: 0.8),
-                                          .init(color: .red.opacity(0), location: 1)],
-                                  startPoint: .leading,
-                                  endPoint: .trailing)
-
-    func smallH(_ posX: Double) -> Double {
-        if posX >= 12 {
-            return 24
-        }
-
-        let result = sqrt(posX * (24 - posX)) * 2
-        if result < 0 || result == .nan {
-            return 0
-        }
-        return result
-    }
+    private let gradient = LinearGradient(stops: [.init(color: .gradientSevereStart, location: 0.5),
+                                                  .init(color: .gradientSevereEnd, location: 0.9),
+                                                  .init(color: .white.opacity(0), location: 1)],
+                                          startPoint: .leading,
+                                          endPoint: .trailing)
 
     var body: some View {
         VStack {
@@ -48,11 +35,24 @@ struct CustomProgressbar: View {
                         .foregroundColor(.gray.opacity(0.3))
                     Capsule()
                         .frame(width: geometry.size.width * progress,
-                               height: smallH(geometry.size.width * progress))
+                               height: valueHeight(geometry.size.width * progress))
                         .foregroundStyle(gradient)
                 }
             }
         }
+    }
+
+    /// calculate the height of value bar
+    private func valueHeight(_ posX: Double) -> Double {
+        if posX >= 12 {
+            return 24
+        }
+
+        let result = sqrt(posX * (24 - posX)) * 2
+        if result < 0 || result == .nan {
+            return 0
+        }
+        return result
     }
 }
 

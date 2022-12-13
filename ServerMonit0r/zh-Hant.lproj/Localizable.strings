@@ -39,7 +39,7 @@
 "cpuTemp" = "CPU 溫度";
 "cpuFreq" = "CPU 頻率";
 "memUsage" = "記憶體使用量";
-"uptime" = "運作時長";
+"uptime" = "開機時長";
 "downloadSpd" = "下載速度";
 "uploadSpd" = "上傳速度";
 
