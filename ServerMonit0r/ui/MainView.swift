@@ -9,7 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject private var connData = SocketConnection.shared
-    @State private var btnConnTitle = "connect".toNSL()
 
     // layout
     private let gridConfig = Array(repeating: GridItem(.adaptive(minimum: 160, maximum: 360),
@@ -59,28 +58,18 @@ struct MainView: View {
 
             ZStack {
                 Button(action: {
-                    if connData.connStatus == .connecting || connData.connStatus == .connected {
-                        connData.disconnect()
-                    } else {
+                    if connData.connStatus == .disconnect {
                         connData.connect()
+                    } else {
+                        connData.disconnect()
                     }
                 }, label: {
-                    Text(btnConnTitle)
+                    Text(connData.btnConnTitle)
                         .padding(8)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.textColor)
                         .background(Color.accentColor)
                         .cornerRadius(8)
-                        .onChange(of: connData.connStatus, perform: { type in
-                            switch type {
-                            case .disconnect:
-                                btnConnTitle = "connect".toNSL()
-                            case .connecting:
-                                btnConnTitle = "connecting".toNSL()
-                            case .connected:
-                                btnConnTitle = "disconnect".toNSL()
-                            }
-                        })
                 })
                 .padding(.horizontal, 16)
             }

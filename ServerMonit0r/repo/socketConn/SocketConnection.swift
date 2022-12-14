@@ -19,7 +19,20 @@ class SocketConnection: ObservableObject {
     @Published var ulSpeed: Double = 0
     @Published var uptime: String = "n/a".toNSL()
     @Published var spdUnitText: String = "Mbps"
-    @Published var connStatus: ConnStatus = .disconnect
+    @Published var connStatus: ConnStatus = .disconnect {
+        didSet {
+            switch connStatus {
+            case .disconnect:
+                btnConnTitle = "connect".toNSL()
+            case .connecting:
+                btnConnTitle = "connecting".toNSL()
+            case .connected:
+                btnConnTitle = "disconnect".toNSL()
+            }
+        }
+    }
+
+    @Published var btnConnTitle = "connect".toNSL()
     // alert
     @Published var alertTitle: String = ""
     @Published var alertMsg: String?

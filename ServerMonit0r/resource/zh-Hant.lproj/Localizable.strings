@@ -67,8 +67,8 @@
 "device" = "裝置";
 "mount" = "掛載點";
 "fstype" = "分區格式";
-"diskUsed" = "分區已用空間";
-"diskFree" = "分區大小";
+"diskFree" = "閒置空間";
+"diskUsed" = "已用空間";
 "diskPercent" = "使用率";
 "diskTotal" = "硬碟大小";
 
@@ -77,3 +77,5 @@
 "done" = "完成";
 "failed" = "失敗";
 "n/a" = "暫無資料";
+"unknown" = "未知";
+"unknownError" = "發生未知的錯誤";

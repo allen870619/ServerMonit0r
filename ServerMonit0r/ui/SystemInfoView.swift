@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SystemInfoView: View {
-    @StateObject var data = SystemInfoData()
+    @StateObject var data = SystemInfoViewModel()
 
     var columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 160)), count: 2)
 
@@ -41,20 +41,31 @@ struct SystemInfoView: View {
                     .font(.title3)
             })
 
-            ForEach(data.diskList, id: \.self.device) { item in
-                Section(content: {
-                    ForEach(item.dataList, id: \.self.0) { disk in
-                        InfoView(title: disk.0, value: disk.1)
-                    }
-                }, header: {
-                    Text(item.device)
-                        .font(.title3)
-                })
+            Section {
+                List(data.diskList, children: \.list) { item in
+                    InfoView(title: item.data.0, value: item.data.1)
+                        .listRowBackground(Color.red)
+                }
+            } header: {
+                Text("disk")
+                    .font(.title3)
             }
         }
-        .refreshable(action: data.getData)
+        .refreshable {
+            do {
+                try await data.getData()
+            } catch {
+                data.errorMsg = error.localizedDescription
+                data.errorAlert = true
+            }
+        }
         .navigationTitle("systemInfo".toNSL())
         .toolbarBackground(Color.accentColor.opacity(0.5), for: .navigationBar)
+        .alert("failed".toNSL(), isPresented: $data.errorAlert, actions: {
+            Button("ok".toNSL()) {}
+        }, message: {
+            Text(data.errorMsg ?? "unknownError".toNSL())
+        })
     }
 }
 

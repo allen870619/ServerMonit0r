@@ -26,11 +26,12 @@
 		9F6F53742861514A00068AC8 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F53732861514A00068AC8 /* Utilities.swift */; };
 		9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F5379286151BF00068AC8 /* Localizable.strings */; };
 		9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */; };
+		9F806B2A29497555008B0EC2 /* SystemInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */; };
 		9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57C929480BA50099B27A /* ErrorType.swift */; };
 		9F9C57CC294822BC0099B27A /* SystemInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */; };
 		9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */; };
 		9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D2294849110099B27A /* SystemInfoView.swift */; };
-		9F9C57D52948529B0099B27A /* SystemInfoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D42948529B0099B27A /* SystemInfoData.swift */; };
+		9F9C57D52948529B0099B27A /* SystemInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */; };
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
 		9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF408327F6FB8F00A68C81 /* SettingsView.swift */; };
 		9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3F20628587A310050C4BC /* SwiftyJSON */; };
@@ -78,12 +79,13 @@
 		9F6F5378286151BF00068AC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9F6F537A286151C000068AC8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
+		9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoFetcher.swift; sourceTree = "<group>"; };
 		9F9C57C929480BA50099B27A /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoEntity.swift; sourceTree = "<group>"; };
 		9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
 		9F9C57D0294823440099B27A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9F9C57D2294849110099B27A /* SystemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoView.swift; sourceTree = "<group>"; };
-		9F9C57D42948529B0099B27A /* SystemInfoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoData.swift; sourceTree = "<group>"; };
+		9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoViewModel.swift; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressbar.swift; sourceTree = "<group>"; };
@@ -190,16 +192,12 @@
 				9F9C57D0294823440099B27A /* Info.plist */,
 				9F9C57CD294822FD0099B27A /* resource */,
 				9F62CC0027EDA4E0007AE814 /* ServerMonit0rApp.swift */,
-				9F6F53712861512D00068AC8 /* SettingData.swift */,
-				9F9C57D42948529B0099B27A /* SystemInfoData.swift */,
-				9F62CC0427EDA4E2007AE814 /* Assets.xcassets */,
-				9F6F5379286151BF00068AC8 /* Localizable.strings */,
 				9F47B43029470A5C00FF69BC /* api */,
 				9F47B4272946CCC600FF69BC /* data */,
-				9F62CC0627EDA4E2007AE814 /* Preview Content */,
-				9F02E5C129430B2B00F55C35 /* socketConn */,
+				9F806B2729495E04008B0EC2 /* repo */,
 				9FCF408227F6E5DF00A68C81 /* ui */,
 				9F02E5C429430BB300F55C35 /* utils */,
+				9F62CC0627EDA4E2007AE814 /* Preview Content */,
 			);
 			path = ServerMonit0r;
 			sourceTree = "<group>";
@@ -229,9 +227,30 @@
 			path = ServerMonit0rUITests;
 			sourceTree = "<group>";
 		};
+		9F806B2729495E04008B0EC2 /* repo */ = {
+			isa = PBXGroup;
+			children = (
+				9F6F53712861512D00068AC8 /* SettingData.swift */,
+				9F02E5C129430B2B00F55C35 /* socketConn */,
+				9F806B2829497535008B0EC2 /* systemInfo */,
+			);
+			path = repo;
+			sourceTree = "<group>";
+		};
+		9F806B2829497535008B0EC2 /* systemInfo */ = {
+			isa = PBXGroup;
+			children = (
+				9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */,
+				9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */,
+			);
+			path = systemInfo;
+			sourceTree = "<group>";
+		};
 		9F9C57CD294822FD0099B27A /* resource */ = {
 			isa = PBXGroup;
 			children = (
+				9F62CC0427EDA4E2007AE814 /* Assets.xcassets */,
+				9F6F5379286151BF00068AC8 /* Localizable.strings */,
 				9F9C57CE294823070099B27A /* font */,
 			);
 			path = resource;
@@ -250,10 +269,10 @@
 			children = (
 				9FC4D7D927F5A80800168CC6 /* MenuView.swift */,
 				9F62CC2C27EDB966007AE814 /* MainView.swift */,
+				9F9C57D2294849110099B27A /* SystemInfoView.swift */,
 				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
 				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
 				9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */,
-				9F9C57D2294849110099B27A /* SystemInfoView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -431,13 +450,14 @@
 				9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */,
 				9F47B43229470A7400FF69BC /* ConnectApi.swift in Sources */,
 				9F47B43429470A9200FF69BC /* ApiRequest.swift in Sources */,
-				9F9C57D52948529B0099B27A /* SystemInfoData.swift in Sources */,
+				9F9C57D52948529B0099B27A /* SystemInfoViewModel.swift in Sources */,
 				9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */,
 				9F47B42C2946DAF100FF69BC /* Extension.swift in Sources */,
 				9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */,
 				9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */,
 				9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */,
 				9F62CC2D27EDB966007AE814 /* MainView.swift in Sources */,
+				9F806B2A29497555008B0EC2 /* SystemInfoFetcher.swift in Sources */,
 				9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */,
 				9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,

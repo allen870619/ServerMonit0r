@@ -67,8 +67,8 @@
 "device" = "Device";
 "mount" = "Mount";
 "fstype" = "Partition Format";
-"diskUsed" = "Partition Used";
-"diskFree" = "Partition Size";
+"diskFree" = "Free";
+"diskUsed" = "Used";
 "diskPercent" = "Used Percentage";
 "diskTotal" = "Disk Size";
 
@@ -77,3 +77,5 @@
 "done" = "Done";
 "failed" = "Failed";
 "n/a" = "N/A";
+"unknown" = "Unknown";
+"unknownError" = "Unknown error occurred";

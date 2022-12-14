@@ -13,6 +13,10 @@ extension Error {
     }
 
     static var urlError: NSError {
-        NSError(domain: "Url format is wrong", code: 1)
+        NSError(domain: "Url format is wrong", code: 2)
+    }
+
+    static var emptyResponse: NSError {
+        NSError(domain: "No response data", code: 3)
     }
 }
