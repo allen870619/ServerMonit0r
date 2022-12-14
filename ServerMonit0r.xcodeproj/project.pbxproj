@@ -27,6 +27,7 @@
 		9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F5379286151BF00068AC8 /* Localizable.strings */; };
 		9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */; };
 		9F806B2A29497555008B0EC2 /* SystemInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */; };
+		9F806B2E2949A95B008B0EC2 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2D2949A95B008B0EC2 /* ChartsView.swift */; };
 		9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57C929480BA50099B27A /* ErrorType.swift */; };
 		9F9C57CC294822BC0099B27A /* SystemInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */; };
 		9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */; };
@@ -80,6 +81,7 @@
 		9F6F537A286151C000068AC8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoFetcher.swift; sourceTree = "<group>"; };
+		9F806B2D2949A95B008B0EC2 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		9F9C57C929480BA50099B27A /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
 		9F9C57CB294822BC0099B27A /* SystemInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoEntity.swift; sourceTree = "<group>"; };
 		9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ZenDots-Regular.ttf"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
 				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
 				9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */,
+				9F806B2D2949A95B008B0EC2 /* ChartsView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */,
 				9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,
+				9F806B2E2949A95B008B0EC2 /* ChartsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

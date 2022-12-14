@@ -38,6 +38,10 @@ class SocketConnection: ObservableObject {
     @Published var alertMsg: String?
     @Published var alertIsPresented = false
 
+    @Published var list = [ChartData]()
+    var count = 0
+    var chartDelta = 0
+
     // connection
     var ip = "127.0.0.1"
     var port: UInt16 = 9943
@@ -179,6 +183,17 @@ class SocketConnection: ObservableObject {
 
                         // other
                         self.uptime = data.other.upTime
+
+                        // charts
+                        self.list.append(.init(temp: self.cpuTemp,
+                                               cpuUsage: self.cpuUsage * 100,
+                                               memUsage: self.memUsage * 100,
+                                               time: self.count))
+                        self.count += 1
+                        if self.count > 60 {
+                            self.chartDelta += 1
+                            self.list.removeFirst()
+                        }
                     }
                 }
 

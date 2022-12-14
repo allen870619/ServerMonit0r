@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    private let menuList = ["dashboard", "systemInfo", "settings"]
+    private let menuList = ["dashboard", "systemInfo", "settings", "charts"]
     @State private var selectedPage: String? = "dashboard"
 
     var body: some View {
@@ -20,12 +20,17 @@ struct MenuView: View {
             .foregroundColor(.textColor)
         } detail: {
             if let selectedPage {
-                if selectedPage == "dashboard" {
+                switch selectedPage {
+                case "dashboard":
                     MainView()
-                } else if selectedPage == "systemInfo" {
+                case "systemInfo":
                     SystemInfoView()
-                } else if selectedPage == "settings" {
+                case "settings":
                     SettingsView()
+                case "charts":
+                    ChartsView()
+                default:
+                    MainView()
                 }
             } else {
                 MainView()
