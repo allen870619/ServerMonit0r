@@ -33,6 +33,8 @@
 		9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */; };
 		9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D2294849110099B27A /* SystemInfoView.swift */; };
 		9F9C57D52948529B0099B27A /* SystemInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */; };
+		9FB51951294B02600067B064 /* SocketCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB51950294B025F0067B064 /* SocketCharts.swift */; };
+		9FB51954294B06C80067B064 /* iOSCommonUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB51953294B06C80067B064 /* iOSCommonUtils */; };
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
 		9FCF408427F6FB8F00A68C81 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF408327F6FB8F00A68C81 /* SettingsView.swift */; };
 		9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 9FD3F20628587A310050C4BC /* SwiftyJSON */; };
@@ -88,6 +90,7 @@
 		9F9C57D0294823440099B27A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9F9C57D2294849110099B27A /* SystemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoView.swift; sourceTree = "<group>"; };
 		9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoViewModel.swift; sourceTree = "<group>"; };
+		9FB51950294B025F0067B064 /* SocketCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketCharts.swift; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressbar.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FD3F20728587A310050C4BC /* SwiftyJSON in Frameworks */,
+				9FB51954294B06C80067B064 /* iOSCommonUtils in Frameworks */,
 				9F47B42F29470A3500FF69BC /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				9F02E5C229430B4200F55C35 /* SocketConnection.swift */,
+				9FB51950294B025F0067B064 /* SocketCharts.swift */,
 			);
 			path = socketConn;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 			packageProductDependencies = (
 				9FD3F20628587A310050C4BC /* SwiftyJSON */,
 				9F47B42E29470A3500FF69BC /* Alamofire */,
+				9FB51953294B06C80067B064 /* iOSCommonUtils */,
 			);
 			productName = ServerMonit0r;
 			productReference = 9F62CBFD27EDA4E0007AE814 /* ServerMonit0r.app */;
@@ -377,6 +383,7 @@
 			packageReferences = (
 				9FD3F20528587A310050C4BC /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				9F47B42D29470A3500FF69BC /* XCRemoteSwiftPackageReference "Alamofire" */,
+				9FB51952294B06C80067B064 /* XCRemoteSwiftPackageReference "iOSCommonUtils" */,
 			);
 			productRefGroup = 9F62CBFE27EDA4E0007AE814 /* Products */;
 			projectDirPath = "";
@@ -452,6 +459,7 @@
 				9FE367A02941B20200E6C60B /* CustomProgressbar.swift in Sources */,
 				9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */,
 				9F47B43229470A7400FF69BC /* ConnectApi.swift in Sources */,
+				9FB51951294B02600067B064 /* SocketCharts.swift in Sources */,
 				9F47B43429470A9200FF69BC /* ApiRequest.swift in Sources */,
 				9F9C57D52948529B0099B27A /* SystemInfoViewModel.swift in Sources */,
 				9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */,
@@ -815,6 +823,14 @@
 				kind = branch;
 			};
 		};
+		9FB51952294B06C80067B064 /* XCRemoteSwiftPackageReference "iOSCommonUtils" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/allen870619/iOSCommonUtils";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		9FD3F20528587A310050C4BC /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -830,6 +846,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9F47B42D29470A3500FF69BC /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		9FB51953294B06C80067B064 /* iOSCommonUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9FB51952294B06C80067B064 /* XCRemoteSwiftPackageReference "iOSCommonUtils" */;
+			productName = iOSCommonUtils;
 		};
 		9FD3F20628587A310050C4BC /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -10,6 +10,24 @@
       }
     },
     {
+      "identity" : "ioscommonutils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/allen870619/iOSCommonUtils",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9ba4af48725d8027ac3e37242ee75b2dac6b0e74"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "revision" : "b4bd0604ded9574807f41b4004b57dd1226a30a4",
+        "version" : "3.5.0"
+      }
+    },
+    {
       "identity" : "swiftyjson",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",

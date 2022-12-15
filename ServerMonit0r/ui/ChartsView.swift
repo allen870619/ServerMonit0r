@@ -8,38 +8,48 @@
 import Charts
 import SwiftUI
 
+enum ChartLineType: String, Plottable {
+    case cpuTemp = "CPU Temp.(ºC)"
+    case cpuUsage = "CPU Usage(%)"
+    case memUsage = "Mem Usage(%)"
+}
+
 struct ChartsView: View {
     @StateObject var connData = SocketConnection.shared
 
     var body: some View {
-        Chart(connData.list) {
-            LineMark(x: .value("time", $0.time),
-                     y: .value("temp", $0.temp))
-                .foregroundStyle(by: .value("type", "CPU Temp.(ºC)"))
+        ScrollView {
+            VStack {
+                Chart {
+                    ForEach(connData.chartData.list) { data in
+                        LineMark(x: .value("time", data.time),
+                                 y: .value("temp", data.temp))
+                            .foregroundStyle(by: .value("type", ChartLineType.cpuTemp))
 
-            LineMark(x: .value("time", $0.time),
-                     y: .value("usage", $0.cpuUsage))
-                .foregroundStyle(by: .value("type", "CPU Usage(%)"))
+                        LineMark(x: .value("time", data.time),
+                                 y: .value("usage", data.cpuUsage))
+                            .foregroundStyle(by: .value("type", ChartLineType.cpuUsage))
 
-            LineMark(x: .value("time", $0.time),
-                     y: .value("usage", $0.memUsage))
-                .foregroundStyle(by: .value("type", "Mem Usage(%)"))
+                        LineMark(x: .value("time", data.time),
+                                 y: .value("usage", data.memUsage))
+                            .foregroundStyle(by: .value("type", ChartLineType.memUsage))
+                    }
+                }
+                .frame(minHeight: 240)
+                .chartForegroundStyleScale([
+                    ChartLineType.cpuTemp.rawValue: .red,
+                    ChartLineType.cpuUsage.rawValue: .green,
+                    ChartLineType.memUsage.rawValue: .blue,
+                ])
+                .chartXScale(domain: connData.chartData.startDate ... connData.chartData.endDate)
+                .chartYScale(domain: 0 ... 105)
+                .padding(32)
+            }
         }
-        .chartForegroundStyleScale([
-            "CPU Temp.(ºC)": .red, "CPU Usage(%)": .green, "Mem Usage(%)": .blue,
-        ])
-        .chartXScale(domain: 1 + connData.chartDelta ... 60 + connData.chartDelta)
-        .chartYScale(domain: 0 ... 105)
-        .padding(32)
+        .background(Color.backgroundColor)
+        .navigationTitle("charts".toNSL())
+        .toolbarBackground(Color.accentColor.opacity(0.5), for: .navigationBar)
     }
-}
-
-struct ChartData: Identifiable {
-    let id = UUID()
-    var temp: Double
-    var cpuUsage: Double
-    var memUsage: Double
-    var time: Int
 }
 
 struct ChartsView_Previews: PreviewProvider {

@@ -19,6 +19,7 @@ class SocketConnection: ObservableObject {
     @Published var ulSpeed: Double = 0
     @Published var uptime: String = "n/a".toNSL()
     @Published var spdUnitText: String = "Mbps"
+    @Published var btnConnTitle = "connect".toNSL()
     @Published var connStatus: ConnStatus = .disconnect {
         didSet {
             switch connStatus {
@@ -32,15 +33,13 @@ class SocketConnection: ObservableObject {
         }
     }
 
-    @Published var btnConnTitle = "connect".toNSL()
     // alert
     @Published var alertTitle: String = ""
     @Published var alertMsg: String?
     @Published var alertIsPresented = false
 
-    @Published var list = [ChartData]()
-    var count = 0
-    var chartDelta = 0
+    // charts
+    @Published var chartData = ChartViewModel()
 
     // connection
     var ip = "127.0.0.1"
@@ -157,7 +156,7 @@ class SocketConnection: ObservableObject {
                 }
             } else {
                 if let content, let data = try? JSONDecoder().decode(SystemInfo.self, from: content) {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         // usage
                         self.cpuUsage = data.cpu.cpuUsage / 100
 
@@ -185,15 +184,10 @@ class SocketConnection: ObservableObject {
                         self.uptime = data.other.upTime
 
                         // charts
-                        self.list.append(.init(temp: self.cpuTemp,
-                                               cpuUsage: self.cpuUsage * 100,
-                                               memUsage: self.memUsage * 100,
-                                               time: self.count))
-                        self.count += 1
-                        if self.count > 60 {
-                            self.chartDelta += 1
-                            self.list.removeFirst()
-                        }
+                        self.chartData.appendData(data: .init(temp: self.cpuTemp,
+                                                              cpuUsage: self.cpuUsage * 100,
+                                                              memUsage: self.memUsage * 100,
+                                                              timestamp: data.timestamp))
                     }
                 }
 

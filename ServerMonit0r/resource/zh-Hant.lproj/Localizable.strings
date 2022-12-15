@@ -72,6 +72,9 @@
 "diskPercent" = "使用率";
 "diskTotal" = "硬碟大小";
 
+// chart
+"charts" = "圖表";
+
 // utils
 "ok" = "好";
 "done" = "完成";

@@ -12,6 +12,7 @@ struct SystemInfo: Decodable {
     var mem: Memory
     var net: Network
     var other: Other
+    var timestamp: Double
 }
 
 struct Cpu: Decodable {

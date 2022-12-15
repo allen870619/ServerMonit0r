@@ -72,6 +72,9 @@
 "diskPercent" = "Used Percentage";
 "diskTotal" = "Disk Size";
 
+// chart
+"charts" = "Charts";
+
 // utils
 "ok" = "OK";
 "done" = "Done";
