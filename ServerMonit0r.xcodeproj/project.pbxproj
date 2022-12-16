@@ -145,6 +145,40 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		9F259E6A294C49890085DB84 /* main */ = {
+			isa = PBXGroup;
+			children = (
+				9F62CC2C27EDB966007AE814 /* MainView.swift */,
+				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
+				9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		9F259E6B294C499B0085DB84 /* systemInfo */ = {
+			isa = PBXGroup;
+			children = (
+				9F9C57D2294849110099B27A /* SystemInfoView.swift */,
+			);
+			path = systemInfo;
+			sourceTree = "<group>";
+		};
+		9F259E6C294C49A70085DB84 /* charts */ = {
+			isa = PBXGroup;
+			children = (
+				9F806B2D2949A95B008B0EC2 /* ChartsView.swift */,
+			);
+			path = charts;
+			sourceTree = "<group>";
+		};
+		9F259E6D294C49AE0085DB84 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
 		9F47B4272946CCC600FF69BC /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,12 +309,10 @@
 			isa = PBXGroup;
 			children = (
 				9FC4D7D927F5A80800168CC6 /* MenuView.swift */,
-				9F62CC2C27EDB966007AE814 /* MainView.swift */,
-				9F9C57D2294849110099B27A /* SystemInfoView.swift */,
-				9FCF408327F6FB8F00A68C81 /* SettingsView.swift */,
-				9FEAF3E3291A92C500BC2FF8 /* MonitorGauge.swift */,
-				9FE3679F2941B20200E6C60B /* CustomProgressbar.swift */,
-				9F806B2D2949A95B008B0EC2 /* ChartsView.swift */,
+				9F259E6A294C49890085DB84 /* main */,
+				9F259E6B294C499B0085DB84 /* systemInfo */,
+				9F259E6C294C49A70085DB84 /* charts */,
+				9F259E6D294C49AE0085DB84 /* settings */,
 			);
 			path = ui;
 			sourceTree = "<group>";

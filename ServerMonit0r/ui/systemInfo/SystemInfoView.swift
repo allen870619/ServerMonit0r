@@ -14,33 +14,22 @@ struct SystemInfoView: View {
 
     var body: some View {
         Form {
-            Section(content: {
-                ForEach(data.osList, id: \.self.0) { item in
-                    InfoView(title: item.0, value: item.1)
-                }
-            }, header: {
-                Text("OS")
-                    .font(.title3)
-            })
+            let list: [(name: String, list: [SystemInfoDataCell])] = [("os", data.osList),
+                                                                      ("cpu", data.cpuList),
+                                                                      ("memory", data.memList)]
+            ForEach(list, id: \.self.name) { type in
+                Section(content: {
+                    ForEach(type.list) { item in
+                        InfoView(title: item.title, value: item.value)
+                    }
+                }, header: {
+                    Text(type.name)
+                        .font(.title3)
+                })
+                .listRowBackground(Color.white.opacity(0.35))
+            }
 
-            Section(content: {
-                ForEach(data.cpuList, id: \.self.0) { item in
-                    InfoView(title: item.0, value: item.1)
-                }
-            }, header: {
-                Text("CPU")
-                    .font(.title3)
-            })
-
-            Section(content: {
-                ForEach(data.memList, id: \.self.0) { item in
-                    InfoView(title: item.0, value: item.1)
-                }
-            }, header: {
-                Text("MEMORY")
-                    .font(.title3)
-            })
-
+            // disk
             Section {
                 List(data.diskList, children: \.list) { item in
                     InfoView(title: item.data.0, value: item.data.1)
@@ -50,6 +39,7 @@ struct SystemInfoView: View {
                 Text("disk")
                     .font(.title3)
             }
+            .listRowBackground(Color.white.opacity(0.35))
         }
         .refreshable {
             do {
@@ -59,6 +49,8 @@ struct SystemInfoView: View {
                 data.errorAlert = true
             }
         }
+        .scrollContentBackground(.hidden)
+        .background(Color.backgroundColor)
         .navigationTitle("systemInfo".toNSL())
         .toolbarBackground(Color.accentColor.opacity(0.5), for: .navigationBar)
         .alert("failed".toNSL(), isPresented: $data.errorAlert, actions: {
@@ -90,6 +82,16 @@ struct InfoView: View {
 
 struct SystemInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        SystemInfoView()
+        SystemInfoView(data: createMock())
+    }
+
+    static func createMock() -> SystemInfoViewModel {
+        let viewModel = SystemInfoViewModel()
+        viewModel.osList = [
+            .init(title: "Test", value: "Value"),
+            .init(title: "Test", value: "Value"),
+            .init(title: "Test", value: "Value"),
+        ]
+        return viewModel
     }
 }

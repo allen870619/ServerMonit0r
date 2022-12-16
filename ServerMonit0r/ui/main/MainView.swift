@@ -19,16 +19,16 @@ struct MainView: View {
         VStack {
             ScrollView {
                 LazyVGrid(columns: gridConfig) {
-                    MonitorGauge(value: connData.cpuUsage,
+                    MonitorGauge(value: connData.socketViewData.cpuUsage,
                                  hint: "cpuUsage".toNSL(),
                                  type: .percent)
-                    MonitorGauge(value: connData.cpuTemp,
+                    MonitorGauge(value: connData.socketViewData.cpuTemp,
                                  hint: "cpuTemp".toNSL(),
                                  type: .temp)
-                    MonitorGauge(value: connData.cpuFreq,
+                    MonitorGauge(value: connData.socketViewData.cpuFreq,
                                  hint: "MHz",
                                  type: .freq)
-                    MonitorGauge(value: connData.memUsage,
+                    MonitorGauge(value: connData.socketViewData.memUsage,
                                  hint: "memUsage".toNSL(),
                                  type: .percent)
                 }
@@ -36,19 +36,19 @@ struct MainView: View {
 
                 VStack {
                     CustomTextView(title: "downloadSpd".toNSL(),
-                                   value: "\(connData.dlSpeed)",
+                                   value: "\(connData.socketViewData.dlSpeed)",
                                    unit: connData.spdUnitText,
                                    minVal: 0,
                                    maxVal: 100)
                         .padding(.vertical, 16)
                     CustomTextView(title: "uploadSpd".toNSL(),
-                                   value: "\(connData.ulSpeed)",
+                                   value: "\(connData.socketViewData.ulSpeed)",
                                    unit: connData.spdUnitText,
                                    minVal: 0,
                                    maxVal: 100)
                         .padding(.vertical, 16)
                     CustomTextView(title: "uptime".toNSL(),
-                                   value: connData.uptime)
+                                   value: connData.socketViewData.uptime)
                         .padding(.vertical, 16)
                 }
                 .padding(.horizontal, 16)

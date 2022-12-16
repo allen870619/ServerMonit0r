@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MenuView: View {
     private let menuList = ["dashboard", "charts", "systemInfo", "settings"]
-    @State private var selectedPage: String? = "charts"
+    @State private var selectedPage: String? = "dashboard"
 
     var body: some View {
         NavigationSplitView {

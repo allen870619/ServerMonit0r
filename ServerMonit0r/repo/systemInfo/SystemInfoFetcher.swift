@@ -8,37 +8,35 @@
 import Foundation
 
 class SystemInfoFetcher {
-    typealias DataUnit = [(title: String, value: String?)]
     /// fetch os info
-    func fetchOsData(_ data: SystemInfoEntity) -> DataUnit {
-        var list = [(String, String?)]()
-        list.append(("pcName", data.os.pcName))
-        list.append(("osType", data.os.osType))
-        list.append(("osVerion", data.os.osVerion))
-        list.append(("machine", data.os.machine))
-        list.append(("osRelease", data.os.osRelease))
+    func fetchOsData(_ data: SystemInfoEntity) -> [SystemInfoDataCell] {
+        var list = [SystemInfoDataCell]()
+        list.append(.init(title: "pcName", value: data.os.pcName))
+        list.append(.init(title: "osType", value: data.os.osType))
+        list.append(.init(title: "osVerion", value: data.os.osVerion))
+        list.append(.init(title: "machine", value: data.os.machine))
+        list.append(.init(title: "osRelease", value: data.os.osRelease))
         return list
     }
 
     /// fetch cpu info
-    func fetchCpuData(_ data: SystemInfoEntity) -> DataUnit {
-        var list = [(String, String?)]()
-        list.append(("modelName", data.cpu.modelName))
-        list.append(("vendor", data.cpu.vendor))
-        //        list.append(("hardware", data.cpu.hardware))
-        list.append(("physicalCore", data.cpu.physicalCore.formatted()))
-        list.append(("logicalCore", data.cpu.logicalCore.formatted()))
-        list.append(("l1Cache", data.cpu.l1Cache))
-        list.append(("l2Cache", data.cpu.l2Cache))
-        list.append(("l3Cache", data.cpu.l3Cache))
+    func fetchCpuData(_ data: SystemInfoEntity) -> [SystemInfoDataCell] {
+        var list = [SystemInfoDataCell]()
+        list.append(.init(title: "modelName", value: data.cpu.modelName))
+        list.append(.init(title: "vendor", value: data.cpu.vendor))
+        list.append(.init(title: "physicalCore", value: data.cpu.physicalCore.formatted()))
+        list.append(.init(title: "logicalCore", value: data.cpu.logicalCore.formatted()))
+        list.append(.init(title: "l1Cache", value: data.cpu.l1Cache))
+        list.append(.init(title: "l2Cache", value: data.cpu.l2Cache))
+        list.append(.init(title: "l3Cache", value: data.cpu.l3Cache))
         return list
     }
 
     /// fetch memory info
-    func fetchMemData(_ data: SystemInfoEntity) -> DataUnit {
-        var list = [(String, String?)]()
-        list.append(("ramVirtual", data.memory.ramVirtual))
-        list.append(("ramSwap", data.memory.ramSwap))
+    func fetchMemData(_ data: SystemInfoEntity) -> [SystemInfoDataCell] {
+        var list = [SystemInfoDataCell]()
+        list.append(.init(title: "ramVirtual", value: data.memory.ramVirtual))
+        list.append(.init(title: "ramSwap", value: data.memory.ramSwap))
         return list
     }
 

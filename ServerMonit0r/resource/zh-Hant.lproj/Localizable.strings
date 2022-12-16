@@ -74,6 +74,13 @@
 
 // chart
 "charts" = "圖表";
+"systemInfoChartTitle" = "系統使用量";
+"networkChartTitle" = "網路使用量";
+"chartCpuTemp" = "CPU 溫度(ºC)";
+"chartCpuUsage" = "CPU 使用量(%)";
+"chartMemUsage" = "RAM 使用量(%)";
+"chartDlBytes" = "下載速度(MB/s)";
+"chartUlBytes" = "上傳速度(MB/s)";
 
 // utils
 "ok" = "好";

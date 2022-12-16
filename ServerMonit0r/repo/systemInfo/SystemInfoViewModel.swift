@@ -5,13 +5,12 @@
 //  Created by Lee Yen Lin on 2022/12/13.
 //
 
-import Combine
 import Foundation
 
 class SystemInfoViewModel: ObservableObject {
-    @Published var cpuList = [(String, String?)]()
-    @Published var osList = [(String, String?)]()
-    @Published var memList = [(String, String?)]()
+    @Published var cpuList = [SystemInfoDataCell]()
+    @Published var osList = [SystemInfoDataCell]()
+    @Published var memList = [SystemInfoDataCell]()
     @Published var diskList = [DiskViewItem]()
     @Published var errorAlert = false
     var errorMsg: String?
@@ -40,7 +39,10 @@ class SystemInfoViewModel: ObservableObject {
     }
 
     @Sendable func getData() async throws {
-        let resp = try await ApiRequest.getData(.systemInfo, method: .get, params: nil, resultType: SystemInfoEntity.self).data
+        let resp = try await ApiRequest.getData(.systemInfo,
+                                                method: .get,
+                                                params: nil,
+                                                resultType: SystemInfoEntity.self).data
         showResult(resp)
     }
 
@@ -55,4 +57,10 @@ class SystemInfoViewModel: ObservableObject {
             self.diskList = fetcher.fetchDiskData(data)
         }
     }
+}
+
+struct SystemInfoDataCell: Identifiable {
+    let id = UUID()
+    let title: String
+    let value: String?
 }

@@ -11,13 +11,7 @@ import SwiftyJSON
 
 class SocketConnection: ObservableObject {
     // ui data
-    @Published var cpuUsage: Double = 0
-    @Published var cpuTemp: Double = 0
-    @Published var cpuFreq: Double = 0
-    @Published var memUsage: Double = 0
-    @Published var dlSpeed: Double = 0
-    @Published var ulSpeed: Double = 0
-    @Published var uptime: String = "n/a".toNSL()
+    @Published var socketViewData = SocketViewData()
     @Published var spdUnitText: String = "Mbps"
     @Published var btnConnTitle = "connect".toNSL()
     @Published var connStatus: ConnStatus = .disconnect {
@@ -39,7 +33,7 @@ class SocketConnection: ObservableObject {
     @Published var alertIsPresented = false
 
     // charts
-    @Published var chartData = ChartViewModel()
+    @Published var chartViewModel = ChartViewModel()
 
     // connection
     var ip = "127.0.0.1"
@@ -50,6 +44,7 @@ class SocketConnection: ObservableObject {
         }
     }
 
+    // connection
     private var conn: NWConnection?
     private var timer: Timer?
     private let timeout = 15
@@ -158,36 +153,33 @@ class SocketConnection: ObservableObject {
                 if let content, let data = try? JSONDecoder().decode(SystemInfo.self, from: content) {
                     DispatchQueue.main.async { [self] in
                         // usage
-                        self.cpuUsage = data.cpu.cpuUsage / 100
+                        self.socketViewData.cpuUsage = data.cpu.cpuUsage / 100
 
                         // temperature
-                        self.cpuTemp = data.cpu.cpuTemp?.roundTo(1) ?? 0
+                        self.socketViewData.cpuTemp = data.cpu.cpuTemp?.roundTo(1) ?? 0
 
                         // freq
-                        self.cpuFreq = data.cpu.cpuFreq.roundTo(2)
+                        self.socketViewData.cpuFreq = data.cpu.cpuFreq.roundTo(2)
 
                         // memory
-                        self.memUsage = data.mem.memUsage / 100
+                        self.socketViewData.memUsage = data.mem.memUsage / 100
 
                         // network
                         let rawDlSpd = data.net.netDownload.parseMegaBytes()
                         let rawUlSpd = data.net.netUpload.parseMegaBytes()
                         if self.spdUnit == .MBs {
-                            self.dlSpeed = rawDlSpd.roundTo(2)
-                            self.ulSpeed = rawUlSpd.roundTo(2)
+                            self.socketViewData.dlSpeed = rawDlSpd.roundTo(2)
+                            self.socketViewData.ulSpeed = rawUlSpd.roundTo(2)
                         } else {
-                            self.dlSpeed = (rawDlSpd * 8).roundTo(2)
-                            self.ulSpeed = (rawUlSpd * 8).roundTo(2)
+                            self.socketViewData.dlSpeed = (rawDlSpd * 8).roundTo(2)
+                            self.socketViewData.ulSpeed = (rawUlSpd * 8).roundTo(2)
                         }
 
                         // other
-                        self.uptime = data.other.upTime
+                        self.socketViewData.uptime = data.other.upTime
 
                         // charts
-                        self.chartData.appendData(data: .init(temp: self.cpuTemp,
-                                                              cpuUsage: self.cpuUsage * 100,
-                                                              memUsage: self.memUsage * 100,
-                                                              timestamp: data.timestamp))
+                        self.chartViewModel.appendData(data: data)
                     }
                 }
 
@@ -221,13 +213,8 @@ class SocketConnection: ObservableObject {
 
     /// clear ui data
     private func clearUi() {
-        cpuUsage = 0
-        cpuTemp = 0
-        cpuFreq = 0
-        memUsage = 0
-        dlSpeed = 0
-        ulSpeed = 0
-        uptime = "n/a".toNSL()
+        socketViewData = SocketViewData()
+        chartViewModel.resetChart()
     }
 }
 
@@ -235,4 +222,14 @@ enum ConnStatus {
     case disconnect
     case connecting
     case connected
+}
+
+struct SocketViewData {
+    var cpuUsage: Double = 0
+    var cpuTemp: Double = 0
+    var cpuFreq: Double = 0
+    var memUsage: Double = 0
+    var dlSpeed: Double = 0
+    var ulSpeed: Double = 0
+    var uptime: String = "n/a".toNSL()
 }

@@ -74,6 +74,13 @@
 
 // chart
 "charts" = "Charts";
+"systemInfoChartTitle" = "System Status";
+"networkChartTitle" = "Network";
+"chartCpuTemp" = "CPU Temp.(ºC)";
+"chartCpuUsage" = "CPU Usage(%)";
+"chartMemUsage" = "Mem Usage(%)";
+"chartDlBytes" = "Download(MB/s)";
+"chartUlBytes" = "Upload(MB/s)";
 
 // utils
 "ok" = "OK";
