@@ -39,13 +39,13 @@ struct MainView: View {
                                    value: "\(connData.socketViewData.dlSpeed)",
                                    unit: connData.spdUnitText,
                                    minVal: 0,
-                                   maxVal: 100)
+                                   maxVal: connData.spdUnit == .mbps ? 100 : 10)
                         .padding(.vertical, 16)
                     CustomTextView(title: "uploadSpd".toNSL(),
                                    value: "\(connData.socketViewData.ulSpeed)",
                                    unit: connData.spdUnitText,
                                    minVal: 0,
-                                   maxVal: 100)
+                                   maxVal: connData.spdUnit == .mbps ? 100 : 10)
                         .padding(.vertical, 16)
                     CustomTextView(title: "uptime".toNSL(),
                                    value: connData.socketViewData.uptime)
