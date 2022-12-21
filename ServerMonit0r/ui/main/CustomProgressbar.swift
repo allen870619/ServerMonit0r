@@ -8,27 +8,39 @@
 import SwiftUI
 
 struct CustomProgressbar: View {
+    let title = "Title"
+    let value = 1234
+    let unit = "Mbps"
     var progress: Double
     let minValue: Double
     let maxValue: Double
-    var unit: String?
-    @State var fontSize: CGFloat = 18
-    @State var task: Task<Void, Never>?
-
-    private let gradient = LinearGradient(stops: [.init(color: .gradientSevereStart, location: 0.5),
-                                                  .init(color: .gradientSevereEnd, location: 0.9),
+    @State private var fontSize: CGFloat = 18
+    @State private var task: Task<Void, Never>?
+    private let gradient = LinearGradient(stops: [.init(color: .gradientSevereStart, location: 0.4),
+                                                  .init(color: .gradientSevereEnd, location: 0.8),
                                                   .init(color: .white.opacity(0), location: 1)],
                                           startPoint: .leading,
                                           endPoint: .trailing)
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            // title
+            Text("Title")
+
+            // center value
+
             HStack {
-                Text(minValue.formatted() + " \(unit ?? "")")
+                Text(minValue.formatted())
                     .font(.custom("ZenDots-Regular", size: 18, relativeTo: .title3))
-                Spacer()
-                Text(maxValue.formatted() + " \(unit ?? "")")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                Text(value.formatted() + "\(unit)")
+                    .font(.custom("ZenDots-Regular", size: 18, relativeTo: .title3))
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                Text(maxValue.formatted())
                     .font(.custom("ZenDots-Regular", size: fontSize, relativeTo: .title3))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
                     .animation(.linear(duration: 0.1), value: fontSize)
                     .onChange(of: progress) { newValue in
                         if newValue >= 1 {
@@ -45,8 +57,9 @@ struct CustomProgressbar: View {
                         }
                     }
             }
-            .frame(minHeight: 32)
+            .frame(maxWidth: .infinity, minHeight: 32)
 
+            // progress bar
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     // background
@@ -56,11 +69,12 @@ struct CustomProgressbar: View {
                         .foregroundColor(.gray.opacity(0.3))
 
                     // value
-                    Capsule()
+                    Rectangle()
                         .frame(width: geometry.size.width * progress,
-                               height: valueHeight(geometry.size.width * progress))
+                               height: 24)
                         .foregroundStyle(gradient)
-                }
+                        .animation(.default, value: progress)
+                }.cornerRadius(12)
             }
         }
     }
@@ -79,24 +93,11 @@ struct CustomProgressbar: View {
             }
         }
     }
-
-    /// calculate the height of value bar
-    private func valueHeight(_ posX: Double) -> Double {
-        if posX >= 12 {
-            return 24
-        }
-
-        let result = sqrt(posX * (24 - posX)) * 2
-        if result < 0 || result == .nan {
-            return 0
-        }
-        return result
-    }
 }
 
 struct CustomProgressbar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomProgressbar(progress: 0.05, minValue: 0, maxValue: 100, unit: "Mbps", fontSize: 1)
-            .previewLayout(.fixed(width: 300, height: 60))
+        CustomProgressbar(progress: 0.5, minValue: 0, maxValue: 100)
+            .previewLayout(.fixed(width: 300, height: 120))
     }
 }
