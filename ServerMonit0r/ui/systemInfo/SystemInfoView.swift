@@ -20,26 +20,26 @@ struct SystemInfoView: View {
             ForEach(list, id: \.self.name) { type in
                 Section(content: {
                     ForEach(type.list) { item in
-                        InfoView(title: item.title, value: item.value)
+                        SingleSystemInfoView(title: item.title, value: item.value)
                     }
                 }, header: {
                     Text(type.name)
                         .font(.title3)
                 })
-                .listRowBackground(Color.white.opacity(0.35))
+                .listRowBackground(Color.white.opacity(0.25))
             }
 
             // disk
             Section {
                 List(data.diskList, children: \.list) { item in
-                    InfoView(title: item.data.0, value: item.data.1)
+                    SingleSystemInfoView(title: item.data.0, value: item.data.1)
                         .listRowBackground(Color.red)
                 }
             } header: {
                 Text("disk")
                     .font(.title3)
             }
-            .listRowBackground(Color.white.opacity(0.35))
+            .listRowBackground(Color.white.opacity(0.25))
         }
         .refreshable {
             do {
@@ -61,7 +61,7 @@ struct SystemInfoView: View {
     }
 }
 
-struct InfoView: View {
+struct SingleSystemInfoView: View {
     var title: String
     var value: String?
 

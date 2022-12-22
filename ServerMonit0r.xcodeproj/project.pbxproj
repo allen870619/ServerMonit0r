@@ -27,6 +27,7 @@
 		9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F5379286151BF00068AC8 /* Localizable.strings */; };
 		9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */; };
 		9F76E9742953FAC500C0370D /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F76E9732953FAC500C0370D /* CustomTextView.swift */; };
+		9F76E97829542E0900C0370D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F76E97729542E0900C0370D /* InfoView.swift */; };
 		9F806B2A29497555008B0EC2 /* SystemInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */; };
 		9F806B2E2949A95B008B0EC2 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2D2949A95B008B0EC2 /* ChartsView.swift */; };
 		9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57C929480BA50099B27A /* ErrorType.swift */; };
@@ -84,6 +85,7 @@
 		9F6F537A286151C000068AC8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		9F76E9732953FAC500C0370D /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		9F76E97729542E0900C0370D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoFetcher.swift; sourceTree = "<group>"; };
 		9F806B2D2949A95B008B0EC2 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		9F9C57C929480BA50099B27A /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				9F259E6B294C499B0085DB84 /* systemInfo */,
 				9F259E6C294C49A70085DB84 /* charts */,
 				9F259E6D294C49AE0085DB84 /* settings */,
+				9F76E97729542E0900C0370D /* InfoView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */,
 				9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,
+				9F76E97829542E0900C0370D /* InfoView.swift in Sources */,
 				9F806B2E2949A95B008B0EC2 /* ChartsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

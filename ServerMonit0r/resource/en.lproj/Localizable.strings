@@ -82,6 +82,13 @@
 "chartDlBytes" = "Download(MB/s)";
 "chartUlBytes" = "Upload(MB/s)";
 
+// about
+"about" = "About";
+"aboutServer" = "Server";
+"aboutServerContent" = "Check out Github page via below link 👇";
+"aboutClick" = "Click Here";
+"aboutCreator" = "Creator";
+
 // utils
 "ok" = "OK";
 "done" = "Done";

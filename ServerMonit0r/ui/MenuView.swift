@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuView: View {
-    private let menuList = ["dashboard", "charts", "systemInfo", "settings"]
+    private let menuList = ["dashboard", "charts", "systemInfo", "settings", "about"]
     @State private var selectedPage: String? = "dashboard"
 
     var body: some View {
@@ -23,12 +23,14 @@ struct MenuView: View {
                 switch selectedPage {
                 case "dashboard":
                     MainView()
+                case "charts":
+                    ChartsView()
                 case "systemInfo":
                     SystemInfoView()
                 case "settings":
                     SettingsView()
-                case "charts":
-                    ChartsView()
+                case "about":
+                    InfoView()
                 default:
                     MainView()
                 }
