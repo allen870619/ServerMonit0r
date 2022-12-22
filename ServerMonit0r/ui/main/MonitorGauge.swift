@@ -115,6 +115,7 @@ struct SpeedoGaugeStyle: GaugeStyle {
                 .trim(from: 0, to: 0.75 * configuration.value)
                 .stroke(getGradient(configuration.value), style: .init(lineWidth: 12, lineCap: .round))
                 .rotationEffect(.degrees(135))
+                .animation(.default, value: configuration.value)
 
             // measure
             Circle()

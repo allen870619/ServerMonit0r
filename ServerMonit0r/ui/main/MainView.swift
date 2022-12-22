@@ -35,17 +35,15 @@ struct MainView: View {
                 .padding(.horizontal, 8)
 
                 VStack {
-                    CustomTextView(title: "downloadSpd".toNSL(),
-                                   value: "\(connData.socketViewData.dlSpeed)",
-                                   unit: connData.spdUnitText,
-                                   minVal: 0,
-                                   maxVal: 100)
+                    CustomProgressbar(title: "downloadSpd".toNSL(),
+                                      value: connData.socketViewData.dlSpeed,
+                                      unit: connData.spdUnitText,
+                                      maxVal: connData.spdUnit == .mbps ? 100 : 10)
                         .padding(.vertical, 16)
-                    CustomTextView(title: "uploadSpd".toNSL(),
-                                   value: "\(connData.socketViewData.ulSpeed)",
-                                   unit: connData.spdUnitText,
-                                   minVal: 0,
-                                   maxVal: 100)
+                    CustomProgressbar(title: "uploadSpd".toNSL(),
+                                      value: connData.socketViewData.ulSpeed,
+                                      unit: connData.spdUnitText,
+                                      maxVal: connData.spdUnit == .mbps ? 100 : 10)
                         .padding(.vertical, 16)
                     CustomTextView(title: "uptime".toNSL(),
                                    value: connData.socketViewData.uptime)
@@ -84,51 +82,6 @@ struct MainView: View {
             }
         })
         .background(Color.backgroundColor)
-    }
-}
-
-/**
- text view
- */
-struct CustomTextView: View {
-    let title: String
-    let value: String
-    var unit: String?
-    var minVal: Double?
-    var maxVal: Double?
-
-    var body: some View {
-        VStack {
-            Text(title)
-                .font(.system(size: 18))
-                .foregroundColor(.textColor)
-                .multilineTextAlignment(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            Text(unit == nil ? "\(value)" : "\(value) \(unit ?? "")")
-                .font(.custom("ZenDots-Regular", size: 18))
-                .foregroundColor(.textColor)
-                .multilineTextAlignment(.center)
-                .frame(maxWidth: .infinity, alignment: .center)
-            if let minVal, let maxVal {
-                CustomProgressbar(progress: progressCheck(),
-                                  minValue: minVal,
-                                  maxValue: maxVal)
-            }
-        }
-    }
-
-    func progressCheck() -> Double {
-        guard let minVal, let maxVal else {
-            return 0
-        }
-        let percent = (Double(value) ?? 0 - minVal) / (maxVal - minVal)
-        if percent >= 1 {
-            return 1.0
-        }
-        if percent <= 0 {
-            return 0.0
-        }
-        return percent
     }
 }
 
