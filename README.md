@@ -9,8 +9,8 @@
 
 ## Features
 * System Status Dashboard
+* Charts powered by Swift Charts
 * Device Spec Info
-* Status powered by Swift Charts
 
 ## Server End
 Please go forward [here](https://github.com/allen870619/ServerMonit0r-server)
