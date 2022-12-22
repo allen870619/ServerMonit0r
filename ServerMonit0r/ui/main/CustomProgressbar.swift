@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct CustomProgressbar: View {
-    let title = "Title"
-    let value = 1234
-    let unit = "Mbps"
-    var progress: Double
-    let minValue: Double
-    let maxValue: Double
+    let title: String
+    let value: Double
+    let unit: String?
+    var minVal: Double = 0
+    var maxVal: Double = 1
+
     @State private var fontSize: CGFloat = 18
     @State private var task: Task<Void, Never>?
+    @State private var overHint = ""
+
     private let gradient = LinearGradient(stops: [.init(color: .gradientSevereStart, location: 0.4),
                                                   .init(color: .gradientSevereEnd, location: 0.8),
                                                   .init(color: .white.opacity(0), location: 1)],
@@ -25,31 +27,32 @@ struct CustomProgressbar: View {
     var body: some View {
         VStack(alignment: .leading) {
             // title
-            Text("Title")
+            Text(title)
 
             // center value
-
             HStack {
-                Text(minValue.formatted())
+                Text(minVal.formatted())
                     .font(.custom("ZenDots-Regular", size: 18, relativeTo: .title3))
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(width: 80, alignment: .leading)
 
-                Text(value.formatted() + "\(unit)")
+                Text(value.formatted() + " \(unit ?? "")")
                     .font(.custom("ZenDots-Regular", size: 18, relativeTo: .title3))
                     .frame(maxWidth: .infinity, alignment: .center)
 
-                Text(maxValue.formatted())
+                Text(maxVal.formatted() + overHint)
                     .font(.custom("ZenDots-Regular", size: fontSize, relativeTo: .title3))
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .frame(width: 80, alignment: .trailing)
                     .animation(.linear(duration: 0.1), value: fontSize)
-                    .onChange(of: progress) { newValue in
-                        if newValue >= 1 {
+                    .onChange(of: value) { newValue in
+                        if calProgress(newValue) >= 1 {
                             if task == nil {
                                 task = Task {
+                                    overHint = "+"
                                     await self.wiggle()
                                 }
                             }
                         } else {
+                            overHint = ""
                             if task != nil {
                                 task?.cancel()
                                 task = nil
@@ -70,13 +73,21 @@ struct CustomProgressbar: View {
 
                     // value
                     Rectangle()
-                        .frame(width: geometry.size.width * progress,
+                        .frame(width: geometry.size.width * progressVal,
                                height: 24)
                         .foregroundStyle(gradient)
-                        .animation(.default, value: progress)
+                        .animation(.default, value: progressVal)
                 }.cornerRadius(12)
             }
         }
+    }
+
+    private var progressVal: Double {
+        min(1, (value - minVal) / (maxVal - minVal))
+    }
+
+    private func calProgress(_ val: Double) -> Double {
+        min(1, (val - minVal) / (maxVal - minVal))
     }
 
     // blink max value
@@ -97,7 +108,7 @@ struct CustomProgressbar: View {
 
 struct CustomProgressbar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomProgressbar(progress: 0.5, minValue: 0, maxValue: 100)
+        CustomProgressbar(title: "Download Speed", value: 5.5, unit: "Mbps", maxVal: 10)
             .previewLayout(.fixed(width: 300, height: 120))
     }
 }
