@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F02E5C229430B4200F55C35 /* SocketConnection.swift */; };
+		9F37A33729555EC300119F3E /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F37A33629555EC300119F3E /* Font.swift */; };
+		9F37A33929555F0500119F3E /* NotoSansTC-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F37A33829555EF900119F3E /* NotoSansTC-Regular.otf */; };
+		9F37A33F295580AA00119F3E /* Makinas-4-Flat.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F37A33E2955809A00119F3E /* Makinas-4-Flat.otf */; };
 		9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B4292946CF7000FF69BC /* SocketEntity.swift */; };
 		9F47B42C2946DAF100FF69BC /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47B42B2946DAF100FF69BC /* Extension.swift */; };
 		9F47B42F29470A3500FF69BC /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9F47B42E29470A3500FF69BC /* Alamofire */; };
@@ -27,6 +30,7 @@
 		9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F6F5379286151BF00068AC8 /* Localizable.strings */; };
 		9F6F537C2861AB7200068AC8 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */; };
 		9F76E9742953FAC500C0370D /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F76E9732953FAC500C0370D /* CustomTextView.swift */; };
+		9F76E97829542E0900C0370D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F76E97729542E0900C0370D /* InfoView.swift */; };
 		9F806B2A29497555008B0EC2 /* SystemInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */; };
 		9F806B2E2949A95B008B0EC2 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F806B2D2949A95B008B0EC2 /* ChartsView.swift */; };
 		9F9C57CA29480BA50099B27A /* ErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57C929480BA50099B27A /* ErrorType.swift */; };
@@ -62,6 +66,9 @@
 
 /* Begin PBXFileReference section */
 		9F02E5C229430B4200F55C35 /* SocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConnection.swift; sourceTree = "<group>"; };
+		9F37A33629555EC300119F3E /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		9F37A33829555EF900119F3E /* NotoSansTC-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansTC-Regular.otf"; sourceTree = "<group>"; };
+		9F37A33E2955809A00119F3E /* Makinas-4-Flat.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Makinas-4-Flat.otf"; sourceTree = "<group>"; };
 		9F47B4292946CF7000FF69BC /* SocketEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketEntity.swift; sourceTree = "<group>"; };
 		9F47B42B2946DAF100FF69BC /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		9F47B43129470A7400FF69BC /* ConnectApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectApi.swift; sourceTree = "<group>"; };
@@ -84,6 +91,7 @@
 		9F6F537A286151C000068AC8 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		9F76E9732953FAC500C0370D /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		9F76E97729542E0900C0370D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoFetcher.swift; sourceTree = "<group>"; };
 		9F806B2D2949A95B008B0EC2 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
 		9F9C57C929480BA50099B27A /* ErrorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorType.swift; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 				9F6F537B2861AB7200068AC8 /* ViewUtilities.swift */,
 				9F9C57C929480BA50099B27A /* ErrorType.swift */,
 				9F47B42B2946DAF100FF69BC /* Extension.swift */,
+				9F37A33629555EC300119F3E /* Font.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -303,6 +312,8 @@
 		9F9C57CE294823070099B27A /* font */ = {
 			isa = PBXGroup;
 			children = (
+				9F37A33E2955809A00119F3E /* Makinas-4-Flat.otf */,
+				9F37A33829555EF900119F3E /* NotoSansTC-Regular.otf */,
 				9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */,
 			);
 			path = font;
@@ -313,9 +324,10 @@
 			children = (
 				9FC4D7D927F5A80800168CC6 /* MenuView.swift */,
 				9F259E6A294C49890085DB84 /* main */,
-				9F259E6B294C499B0085DB84 /* systemInfo */,
 				9F259E6C294C49A70085DB84 /* charts */,
+				9F259E6B294C499B0085DB84 /* systemInfo */,
 				9F259E6D294C49AE0085DB84 /* settings */,
+				9F76E97729542E0900C0370D /* InfoView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -437,8 +449,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F62CC0827EDA4E2007AE814 /* Preview Assets.xcassets in Resources */,
+				9F37A33F295580AA00119F3E /* Makinas-4-Flat.otf in Resources */,
 				9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */,
 				9F6F5377286151BF00068AC8 /* Localizable.strings in Resources */,
+				9F37A33929555F0500119F3E /* NotoSansTC-Regular.otf in Resources */,
 				9F62CC0527EDA4E2007AE814 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,9 +519,11 @@
 				9F02E5C329430B4300F55C35 /* SocketConnection.swift in Sources */,
 				9F62CC2D27EDB966007AE814 /* MainView.swift in Sources */,
 				9F806B2A29497555008B0EC2 /* SystemInfoFetcher.swift in Sources */,
+				9F37A33729555EC300119F3E /* Font.swift in Sources */,
 				9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */,
 				9F47B43629470FD000FF69BC /* NetworkConfig.swift in Sources */,
 				9F62CC0127EDA4E0007AE814 /* ServerMonit0rApp.swift in Sources */,
+				9F76E97829542E0900C0370D /* InfoView.swift in Sources */,
 				9F806B2E2949A95B008B0EC2 /* ChartsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

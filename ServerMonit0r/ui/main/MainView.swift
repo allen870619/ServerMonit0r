@@ -64,6 +64,7 @@ struct MainView: View {
                 }, label: {
                     Text(connData.btnConnTitle)
                         .padding(8)
+                        .font(.numFontWithChinese(size: 18))
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.textColor)
                         .background(Color.accentColor)

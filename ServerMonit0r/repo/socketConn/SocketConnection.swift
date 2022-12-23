@@ -175,8 +175,30 @@ class SocketConnection: ObservableObject {
                             self.socketViewData.ulSpeed = (rawUlSpd * 8).roundTo(2)
                         }
 
-                        // other
-                        self.socketViewData.uptime = data.other.upTime
+                        // uptime
+                        if let second = Int(data.other.upTime) {
+                            let day = second / 86400
+                            let hour = (second % 86400) / 3600
+                            let minute = (second % 3600) / 60
+                            let second = second % 60
+
+                            var strSecond = ""
+                            if day > 0 {
+                                strSecond += "\(day)\("day".toNSL())"
+                            }
+                            if hour > 0 {
+                                strSecond += " \(hour)\("hour".toNSL())"
+                            }
+                            if minute > 0 {
+                                strSecond += " \(minute)\("minute".toNSL())"
+                            }
+
+                            strSecond += " \(second)\("second".toNSL())"
+
+                            self.socketViewData.uptime = strSecond
+                        } else {
+                            self.socketViewData.uptime = data.other.upTime
+                        }
 
                         // charts
                         self.chartViewModel.appendData(data: data)

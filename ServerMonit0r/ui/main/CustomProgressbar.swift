@@ -28,6 +28,7 @@ struct CustomProgressbar: View {
         VStack(alignment: .leading) {
             // title
             Text(title)
+                .font(.numFontWithChinese(size: 18))
 
             // center value
             HStack {

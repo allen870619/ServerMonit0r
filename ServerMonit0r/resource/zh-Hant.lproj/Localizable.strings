@@ -82,6 +82,13 @@
 "chartDlBytes" = "下載速度(MB/s)";
 "chartUlBytes" = "上傳速度(MB/s)";
 
+// about
+"about" = "關於";
+"aboutServer" = "伺服器端程式";
+"aboutServerContent" = "請至Github下載👇";
+"aboutClick" = "點我";
+"aboutCreator" = "作者";
+
 // utils
 "ok" = "好";
 "done" = "完成";
@@ -89,3 +96,7 @@
 "n/a" = "暫無資料";
 "unknown" = "未知";
 "unknownError" = "發生未知的錯誤";
+"day" = "天";
+"hour" = "小時";
+"minute" = "分";
+"second" = "秒";
