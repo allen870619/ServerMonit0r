@@ -14,7 +14,9 @@ struct MenuView: View {
     var body: some View {
         NavigationSplitView {
             List(menuList, id: \.self, selection: $selectedPage) { str in
-                Text(str.toNSL()).padding(.vertical, 4)
+                Text(str.toNSL())
+                    .font(.numFontWithChinese(size: 18))
+                    .padding(.vertical, 4)
             }
             .navigationTitle("menu".toNSL())
             .foregroundColor(.textColor)

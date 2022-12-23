@@ -53,7 +53,7 @@ struct SingleChartView: View {
 
         VStack {
             Text(chartStyleMode.rawValue.toNSL())
-                .font(.system(.title3))
+                .font(.numFontWithChinese(size: 18))
                 .padding(.bottom, 16)
             if needYScale {
                 chart.chartYScale(domain: 0 ... 105)

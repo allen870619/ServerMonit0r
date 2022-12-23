@@ -4,7 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Makinas-4-Flat.otf</string>
 		<string>ZenDots-Regular.ttf</string>
+		<string>NotoSansTC-Regular.otf</string>
 	</array>
 </dict>
 </plist>

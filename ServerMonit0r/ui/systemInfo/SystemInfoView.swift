@@ -69,9 +69,11 @@ struct SingleSystemInfoView: View {
         VStack {
             HStack {
                 Text(title.toNSL())
+                    .font(.numFontWithChinese(size: 18))
                 Spacer()
             }
             Text(value ?? "n/a".toNSL())
+                .font(.numFontWithChinese(size: 18))
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
                 .multilineTextAlignment(.center)

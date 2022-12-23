@@ -96,3 +96,7 @@
 "n/a" = "N/A";
 "unknown" = "Unknown";
 "unknownError" = "Unknown error occurred";
+"day" = "Days";
+"hour" = "H";
+"minute" = "m";
+"second" = "s";

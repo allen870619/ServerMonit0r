@@ -11,13 +11,17 @@ struct InfoView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .center, spacing: 16) {
-                Text("aboutServer".toNSL()).font(.title)
+                Text("aboutServer".toNSL())
+                    .font(.numFontWithChinese(size: 24))
                 Text("aboutServerContent".toNSL())
+                    .font(.numFontWithChinese(size: 18))
                 Link("aboutClick".toNSL(), destination: .init(string: "https://github.com/allen870619/ServerMonit0r-server")!)
 
                 Spacer().frame(height: 32)
-                Text("aboutCreator".toNSL()).font(.title)
+                Text("aboutCreator".toNSL())
+                    .font(.numFontWithChinese(size: 24))
                 Text("Allen Lee")
+                    .font(.numFontWithChinese(size: 18))
                 HStack(spacing: 16) {
                     IconLinkView(url: URL(string: "https://github.com/allen870619"),
                                  imgName: "ic_github")

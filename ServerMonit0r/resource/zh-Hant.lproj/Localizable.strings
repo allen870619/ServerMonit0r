@@ -96,3 +96,7 @@
 "n/a" = "暫無資料";
 "unknown" = "未知";
 "unknownError" = "發生未知的錯誤";
+"day" = "天";
+"hour" = "小時";
+"minute" = "分";
+"second" = "秒";
