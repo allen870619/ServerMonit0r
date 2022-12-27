@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class SocketConnection: ObservableObject {
     // ui data
-    @Published var socketViewData = SocketViewData()
+    @Published var socketViewData = SocketViewData(cpuUsage: 0, cpuTemp: 0, cpuFreq: 0, memUsage: 0, dlSpeed: 0, ulSpeed: 0, uptime: "n/a".toNSL())
     @Published var spdUnitText: String = "Mbps"
     @Published var btnConnTitle = "connect".toNSL()
     @Published var connStatus: ConnStatus = .disconnect {
@@ -235,7 +235,13 @@ class SocketConnection: ObservableObject {
 
     /// clear ui data
     private func clearUi() {
-        socketViewData = SocketViewData()
+        socketViewData = SocketViewData(cpuUsage: 0,
+                                        cpuTemp: 0,
+                                        cpuFreq: 0,
+                                        memUsage: 0,
+                                        dlSpeed: 0,
+                                        ulSpeed: 0,
+                                        uptime: "n/a".toNSL())
         chartViewModel.resetChart()
     }
 }
@@ -247,11 +253,11 @@ enum ConnStatus {
 }
 
 struct SocketViewData {
-    var cpuUsage: Double = 0
-    var cpuTemp: Double = 0
-    var cpuFreq: Double = 0
-    var memUsage: Double = 0
-    var dlSpeed: Double = 0
-    var ulSpeed: Double = 0
-    var uptime: String = "n/a".toNSL()
+    var cpuUsage: Double
+    var cpuTemp: Double
+    var cpuFreq: Double
+    var memUsage: Double
+    var dlSpeed: Double
+    var ulSpeed: Double
+    var uptime: String
 }
