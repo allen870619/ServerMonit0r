@@ -13,7 +13,8 @@ class SystemInfoViewModel: ObservableObject {
     @Published var memList = [SystemInfoDataCell]()
     @Published var diskList = [DiskViewItem]()
     @Published var errorAlert = false
-    var errorMsg: String?
+    private(set) var errorMsg: String?
+    var service: SystemInfoService?
 
     private var task: Task<Void, Never>? {
         willSet {
@@ -21,41 +22,36 @@ class SystemInfoViewModel: ObservableObject {
         }
     }
 
-    init() {
-        task = Task {
-            do {
-                try await getData()
-            } catch {
-                DispatchQueue.main.async {
-                    self.errorMsg = error.localizedDescription
-                    self.errorAlert = true
-                }
-            }
-        }
+    init(service: SystemInfoService?) {
+        self.service = service
+        task = getInfoData()
     }
 
     deinit {
         task?.cancel()
     }
 
-    @Sendable func getData() async throws {
-        let resp = try await ApiRequest.getData(.systemInfo,
-                                                method: .get,
-                                                params: nil,
-                                                resultType: SystemInfoEntity.self).data
-        showResult(resp)
+    func getInfoData() -> Task<Void, Never>? {
+        service?.getSystemInfo { [weak self] data in
+            DispatchQueue.main.async {
+                do {
+                    self?.showResult(try data.get())
+                } catch {
+                    self?.errorAlert = true
+                    self?.errorMsg = error.localizedDescription
+                }
+            }
+        }
     }
 
-    /// set ui Data
+    /// publish data
     private func showResult(_ data: SystemInfoEntity?) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self, let data else { return }
-            let fetcher = SystemInfoFetcher()
-            self.cpuList = fetcher.fetchCpuData(data)
-            self.osList = fetcher.fetchOsData(data)
-            self.memList = fetcher.fetchMemData(data)
-            self.diskList = fetcher.fetchDiskData(data)
-        }
+        guard let data else { return }
+        let fetcher = SystemInfoFetcher()
+        cpuList = fetcher.fetchCpuData(data)
+        osList = fetcher.fetchOsData(data)
+        memList = fetcher.fetchMemData(data)
+        diskList = fetcher.fetchDiskData(data)
     }
 }
 

@@ -38,6 +38,8 @@
 		9F9C57D1294823540099B27A /* ZenDots-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F9C57CF294823330099B27A /* ZenDots-Regular.ttf */; };
 		9F9C57D3294849110099B27A /* SystemInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D2294849110099B27A /* SystemInfoView.swift */; };
 		9F9C57D52948529B0099B27A /* SystemInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */; };
+		9FAF06AF29B6E93A00B4F92F /* SystemInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF06AE29B6E93A00B4F92F /* SystemInfoService.swift */; };
+		9FAF06B229B71E8300B4F92F /* SystemInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAF06B129B71E8300B4F92F /* SystemInfoTests.swift */; };
 		9FB51951294B02600067B064 /* SocketCharts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB51950294B025F0067B064 /* SocketCharts.swift */; };
 		9FB51954294B06C80067B064 /* iOSCommonUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 9FB51953294B06C80067B064 /* iOSCommonUtils */; };
 		9FC4D7DA27F5A80800168CC6 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC4D7D927F5A80800168CC6 /* MenuView.swift */; };
@@ -100,6 +102,8 @@
 		9F9C57D0294823440099B27A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9F9C57D2294849110099B27A /* SystemInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoView.swift; sourceTree = "<group>"; };
 		9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoViewModel.swift; sourceTree = "<group>"; };
+		9FAF06AE29B6E93A00B4F92F /* SystemInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoService.swift; sourceTree = "<group>"; };
+		9FAF06B129B71E8300B4F92F /* SystemInfoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInfoTests.swift; sourceTree = "<group>"; };
 		9FB51950294B025F0067B064 /* SocketCharts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketCharts.swift; sourceTree = "<group>"; };
 		9FC4D7D927F5A80800168CC6 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		9FCF408327F6FB8F00A68C81 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				9F62CC1127EDA4E2007AE814 /* ServerMonit0rTests.swift */,
+				9FAF06B129B71E8300B4F92F /* SystemInfoTests.swift */,
 			);
 			path = ServerMonit0rTests;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				9F9C57D42948529B0099B27A /* SystemInfoViewModel.swift */,
+				9FAF06AE29B6E93A00B4F92F /* SystemInfoService.swift */,
 				9F806B2929497555008B0EC2 /* SystemInfoFetcher.swift */,
 			);
 			path = systemInfo;
@@ -511,6 +517,7 @@
 				9F47B43229470A7400FF69BC /* ConnectApi.swift in Sources */,
 				9FB51951294B02600067B064 /* SocketCharts.swift in Sources */,
 				9F47B43429470A9200FF69BC /* ApiRequest.swift in Sources */,
+				9FAF06AF29B6E93A00B4F92F /* SystemInfoService.swift in Sources */,
 				9F9C57D52948529B0099B27A /* SystemInfoViewModel.swift in Sources */,
 				9F47B42A2946CF7000FF69BC /* SocketEntity.swift in Sources */,
 				9F47B42C2946DAF100FF69BC /* Extension.swift in Sources */,
@@ -532,6 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FAF06B229B71E8300B4F92F /* SystemInfoTests.swift in Sources */,
 				9F62CC1227EDA4E2007AE814 /* ServerMonit0rTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -758,7 +766,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CUT53EQ8B5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = allen870619.ServerMonit0rTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -778,7 +786,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CUT53EQ8B5;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = allen870619.ServerMonit0rTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct SystemInfoView: View {
-    @StateObject var data = SystemInfoViewModel()
+    @StateObject var viewModel = SystemInfoViewModel(service: SystemInfoRemoteService())
 
     var columns: [GridItem] = Array(repeating: .init(.adaptive(minimum: 160)), count: 2)
 
     var body: some View {
         Form {
-            let list: [(name: String, list: [SystemInfoDataCell])] = [("os", data.osList),
-                                                                      ("cpu", data.cpuList),
-                                                                      ("memory", data.memList)]
+            let list: [(name: String, list: [SystemInfoDataCell])] = [("os", viewModel.osList),
+                                                                      ("cpu", viewModel.cpuList),
+                                                                      ("memory", viewModel.memList)]
             ForEach(list, id: \.self.name) { type in
                 Section(content: {
                     ForEach(type.list) { item in
@@ -31,7 +31,7 @@ struct SystemInfoView: View {
 
             // disk
             Section {
-                List(data.diskList, children: \.list) { item in
+                List(viewModel.diskList, children: \.list) { item in
                     SingleSystemInfoView(title: item.data.0, value: item.data.1)
                         .listRowBackground(Color.red)
                 }
@@ -42,21 +42,16 @@ struct SystemInfoView: View {
             .listRowBackground(Color.white.opacity(0.25))
         }
         .refreshable {
-            do {
-                try await data.getData()
-            } catch {
-                data.errorMsg = error.localizedDescription
-                data.errorAlert = true
-            }
+            await viewModel.getInfoData()?.value
         }
         .scrollContentBackground(.hidden)
         .background(Color.backgroundColor)
         .navigationTitle("systemInfo".toNSL())
         .toolbarBackground(Color.accentColor.opacity(0.5), for: .navigationBar)
-        .alert("failed".toNSL(), isPresented: $data.errorAlert, actions: {
+        .alert("failed".toNSL(), isPresented: $viewModel.errorAlert, actions: {
             Button("ok".toNSL()) {}
         }, message: {
-            Text(data.errorMsg ?? "unknownError".toNSL())
+            Text(viewModel.errorMsg ?? "unknownError".toNSL())
         })
     }
 }
@@ -84,16 +79,40 @@ struct SingleSystemInfoView: View {
 
 struct SystemInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        SystemInfoView(data: createMock())
+        SystemInfoView(viewModel: SystemInfoViewModel(service: MockService()))
     }
+}
 
-    static func createMock() -> SystemInfoViewModel {
-        let viewModel = SystemInfoViewModel()
-        viewModel.osList = [
-            .init(title: "Test", value: "Value"),
-            .init(title: "Test", value: "Value"),
-            .init(title: "Test", value: "Value"),
-        ]
-        return viewModel
+class MockService: SystemInfoService {
+    func getSystemInfo(completion: @escaping (Result<SystemInfoEntity, Error>) -> Void) -> Task<Void, Never>? {
+        let osEntity = OsEntity(machine: "Machine",
+                                osRawVersion: "osRawVersion",
+                                osRelease: "osRelease",
+                                osType: "osType",
+                                osVerion: "osVersion",
+                                pcName: "pcName",
+                                platform: "platform")
+        let cpuEntity = CpuEntity(arch: "arch",
+                                  hardware: "hardware",
+                                  l1Cache: "L1",
+                                  l2Cache: "L2",
+                                  l3Cache: "L3",
+                                  logicalCore: 1,
+                                  modelName: "modelName",
+                                  physicalCore: 2,
+                                  vendor: "vendor")
+        let memoryEntity = MemoryEntity(ramVirtual: "ramVirtual",
+                                        ramSwap: "rawSwap",
+                                        disk: [.init(device: "device", mount: "mount", fstype: "fstype", diskTotal: "diskTotal", diskUsed: "diskUsed", diskFree: "diskFree", diskPercent: 99.5)])
+        let mockData = SystemInfoEntity(os: osEntity, cpu: cpuEntity, memory: memoryEntity)
+
+        return Task {
+            do {
+                try await Task.sleep(nanoseconds: 2_000_000_000)
+                completion(.success(mockData))
+            } catch {
+                completion(.failure(NSError(domain: "Test", code: 123)))
+            }
+        }
     }
 }
